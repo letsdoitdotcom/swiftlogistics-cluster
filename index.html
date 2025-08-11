@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoversDelight - Professional Delivery & Logistics Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-truck"></i>
+                <span>MoversDelight</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#team" class="nav-link">Team</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Tracking -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Fast, Reliable, and Secure Delivery Services</h1>
+                <p class="hero-subtitle">Track your packages in real-time and experience seamless logistics solutions</p>
+                
+                <!-- Tracking Form -->
+                <div class="tracking-form">
+                    <h3>Track Your Package</h3>
+                    <form id="trackingForm" action="tracking.html" method="GET">
+                        <div class="tracking-input-group">
+                            <input type="text" id="trackingNumber" name="tracking" placeholder="Enter tracking number" class="tracking-input" required>
+                            <button type="submit" class="tracking-button">
+                                <i class="fas fa-search"></i>
+                                Track Package
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-graphic">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Express Delivery</h3>
+                    <p>Same-day and next-day delivery options for urgent shipments</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>International Shipping</h3>
+                    <p>Worldwide delivery with customs clearance and tracking</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Warehousing</h3>
+                    <p>Secure storage solutions with inventory management</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Handling</h3>
+                    <p>Fragile and valuable item protection with insurance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About MoversDelight</h2>
+                    <p>We are a leading logistics company dedicated to providing exceptional delivery services. With years of experience and a commitment to customer satisfaction, we ensure your packages reach their destination safely and on time.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <h3>10K+</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                        <div class="stat">
+                            <h3>50+</h3>
+                            <p>Countries Served</p>
+                        </div>
+                        <div class="stat">
+                            <h3>99%</h3>
+                            <p>On-Time Delivery</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-graphic">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team" role="region" aria-labelledby="teamHeading">
+        <div class="container">
+            <h2 class="section-title" id="teamHeading">Our Team</h2>
+            <div class="team-layout">
+                <div class="ceo-highlight">
+                    <div class="ceo-card">
+                        <div class="ceo-photo-wrap">
+                            <img src="images/CEO.jpg" alt="CEO Gilbert Acevedo" class="ceo-photo" loading="lazy" />
+                        </div>
+                        <div class="ceo-content">
+                            <h3 class="ceo-name">Gilbert Acevedo <span class="role-badge">CEO & Founder</span></h3>
+                            <p class="ceo-intro">With over 25 years of experience, Gilbert leads our mission to make logistics seamless, safe, and trustworthy.</p>
+                            <div class="ceo-bio-collapse" data-collapsed="true">
+                                <p class="ceo-bio-full">
+                                    With over 20 years in the logistics industry, Gilbert Acevedo has made it his life’s work to ensure goods and packages move smoothly from sender to destination. His passion for convenient, stress-free logistics is matched only by his dedication to protecting every shipment from damage. Gilbert believes logistics isn’t just about transportation – it’s about trust, timing, and care. Under his leadership, MoversDelight continues to deliver on its promise: getting your goods where they need to be, safely and on time, every time.
+                                </p>
+                                <p class="ceo-bio-full">
+                                    Gilbert is the CEO and founder of MoversDelight, bringing over 25 years of experience in the logistics industry. Driven by a passion for making the movement of goods and packages more convenient and efficient, he has built a strong reputation for delivering seamless logistics solutions. His unwavering dedication ensures that every shipment is handled with care, arriving on time and without damage. Under his leadership, the company has grown significantly, now operating offices in five different states. Today, MoversDelight continues to set the bar high for reliability, innovation, and customer satisfaction.
+                                </p>
+                            </div>
+                            <div class="ceo-actions">
+                                <a href="mailto:Gilbertacevedoiii@gmail.com" class="email-link"><i class="fas fa-envelope"></i> Gilbertacevedoiii@gmail.com</a>
+                                <button type="button" class="toggle-bio-btn" id="toggleCeoBioBtn">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-members">
+                    <div class="member-card">
+                        <div class="member-photo">
+                            <img src="images/Communications-manager.jpg" alt="Communications Manager John Ashley Cannon" loading="lazy" />
+                        </div>
+                        <div class="member-info">
+                            <h3>John Ashley Cannon</h3>
+                            <p class="member-role">Communications Manager</p>
+                            <a href="mailto:Johnashleycannon@att.net" class="member-email">Johnashleycannon@att.net</a>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-photo">
+                            <img src="images/Operations-manager.jpg" alt="Operations Manager Mark Dean Gunnason" loading="lazy" />
+                        </div>
+                        <div class="member-info">
+                            <h3>Mark Dean Gunnason</h3>
+                            <p class="member-role">Operations Manager</p>
+                            <a href="mailto:Markdgunnason@icloud.com" class="member-email">Markdgunnason@icloud.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Address</h3>
+                            <p>123 Logistics Street<br>Delivery City, DC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@moversdelight.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>Business Hours</h3>
+                            <p>Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-truck"></i>
+                        <h3>MoversDelight</h3>
+                    </div>
+                    <p>Your trusted partner in logistics and delivery services.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MoversDelight. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hidden Admin Modal -->
+    <div id="adminModal" class="modal" style="display:none;">
+        <div class="modal-content admin-modal-content">
+            <div class="modal-header">
+                <div class="modal-logo"><i class="fas fa-tools"></i> <span>Tracking Setup</span></div>
+                <button id="adminCloseBtn" class="close-btn" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="admin-body" style="padding:1.5rem; max-height:70vh; overflow:auto;">
+                <div class="admin-sections">
+                    <div class="admin-left">
+                        <div class="admin-panel-block">
+                            <div class="admin-panel-header">
+                                <h4 style="margin:0;">Tracking Numbers</h4>
+                                <button id="addTrackingBtn" class="admin-small-btn"><i class="fas fa-plus"></i> Add</button>
+                            </div>
+                            <ul id="trackingList" class="admin-tracking-list"></ul>
+                            <div class="admin-sample-hint">
+                                <details>
+                                    <summary>Sample Tracking Numbers</summary>
+                                    <ul>
+                                        <li><code>MD123456789</code></li>
+                                        <li><code>MD987654321</code></li>
+                                        <li><code>MD555666777</code></li>
+                                    </ul>
+                                    <p style="margin-top:.4rem; font-size:.65rem; line-height:1.3;">Open one of the samples above in a new window to see full structure then replicate your own.</p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-right">
+                        <form id="trackingEditForm" class="admin-form" autocomplete="off">
+                            <div class="admin-form-grid">
+                                <label>Tracking Number<input id="editNumber" required></label>
+                                <label>Status
+                                    <select id="editStatus">
+                                        <option value="pending">Pending</option>
+                                        <option value="in-transit">In Transit</option>
+                                        <option value="delivered">Delivered</option>
+                                    </select>
+                                </label>
+                                <label>Status Text<input id="editStatusText"></label>
+                                <label>Origin<input id="editOrigin"></label>
+                                <label>Destination<input id="editDestination"></label>
+                                <label>ETA<input id="editETA" type="date"></label>
+                                <label>Package Type<input id="editType"></label>
+                                <label>Weight<input id="editWeight"></label>
+                                <label>Dimensions<input id="editDimensions"></label>
+                                <label>Insurance<input id="editInsurance"></label>
+                            </div>
+                            <div class="admin-panel-block" style="margin-top:1rem;">
+                                <div class="admin-panel-header">
+                                    <h4 style="margin:0;">Timeline Events</h4>
+                                    <button id="addTimelineEventBtn" type="button" class="admin-small-btn"><i class="fas fa-plus"></i> Event</button>
+                                </div>
+                                <div id="timelineEventsContainer" class="timeline-events-container"></div>
+                            </div>
+                            <div style="display:flex; gap:.75rem; margin-top:1rem; flex-wrap:wrap;">
+                                <button type="submit" class="admin-primary-btn"><i class="fas fa-save"></i> Save</button>
+                                <button type="button" id="deleteTrackingBtn" class="admin-danger-btn"><i class="fas fa-trash"></i> Delete</button>
+                                <button type="button" id="resetAllTrackingBtn" class="admin-warning-btn"><i class="fas fa-undo"></i> Reset All</button>
+                            </div>
+                            <p id="adminSaveNotice" style="font-size:.8rem; color:#64748b; margin-top:.5rem;">Changes are persisted (local cache syncs to backend when available).</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Auth Overlay -->
+    <div id="adminAuthOverlay" class="admin-auth-overlay" style="display:none;">
+        <div class="admin-auth-card" id="adminAuthCard">
+            <h3 id="adminAuthTitle">Admin Access</h3>
+            <p id="adminAuthSubtitle" style="margin-top:-4px; color:#64748b; font-size:.9rem;">Enter password to configure tracking.</p>
+            <form id="adminAuthForm">
+                <div class="password-wrapper">
+                    <input type="password" id="adminAuthPassword" placeholder="Password" autocomplete="current-password" required>
+                    <button type="button" id="togglePasswordVisibility" class="pw-eye" aria-label="Show password"><i class="fas fa-eye"></i></button>
+                </div>
+                <div class="auth-actions">
+                    <button type="submit" class="admin-primary-btn" style="flex:1; justify-content:center;">Enter</button>
+                    <button type="button" id="adminAuthCancel" class="admin-danger-btn" style="justify-content:center;">Cancel</button>
+                </div>
+                <div id="adminAuthError" class="auth-error" aria-live="polite"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Admin Modal -->
+    <div id="contactAdminModal" class="modal" style="display:none;">
+        <div class="modal-content admin-modal-content">
+            <div class="modal-header">
+                <div class="modal-logo"><i class="fas fa-address-book"></i> <span>Contact Setup</span></div>
+                <button id="contactAdminCloseBtn" class="close-btn" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="admin-body" style="padding:1.3rem; max-height:70vh; overflow:auto;">
+                <form id="contactEditForm" class="admin-form" autocomplete="off">
+                    <div class="contact-admin-grid">
+                        <label>Address<textarea id="editContactAddress" rows="3" placeholder="Company address"></textarea></label>
+                        <label>Phone<input id="editContactPhone" placeholder="Phone"></label>
+                        <label>Email<input id="editContactEmail" type="email" placeholder="Email"></label>
+                        <label>Business Hours<textarea id="editContactHours" rows="2" placeholder="Hours"></textarea></label>
+                    </div>
+                    <div style="display:flex; gap:.75rem; margin-top:1rem; flex-wrap:wrap;">
+                        <button type="submit" class="admin-primary-btn"><i class="fas fa-save"></i> Save</button>
+                        <button type="button" id="resetContactBtn" class="admin-warning-btn"><i class="fas fa-undo"></i> Reset</button>
+                    </div>
+                    <p id="contactSaveNotice" style="font-size:.7rem; color:#64748b; margin-top:.5rem;">Changes save directly to backend (no local fallback).</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

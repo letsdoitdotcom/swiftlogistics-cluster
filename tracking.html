@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Tracking - MoversDelight</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-truck"></i>
+                <span>MoversDelight</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#services" class="nav-link">Services</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tracking Page Header -->
+    <section class="tracking-page-header">
+        <div class="container">
+            <div class="tracking-header-content">
+                <div class="tracking-header-text">
+                    <h1>Package Tracking</h1>
+                    <p>Track your package in real-time and get detailed information about your shipment</p>
+                </div>
+                <div class="tracking-header-search">
+                    <div class="tracking-search-form">
+                        <input type="text" id="trackingNumber" placeholder="Enter tracking number" class="tracking-search-input">
+                        <button id="trackButton" class="tracking-search-button">
+                            <i class="fas fa-search"></i>
+                            Track Package
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracking Results Section -->
+    <section class="tracking-results-section">
+        <div class="container">
+            <div id="trackingResults">
+                <!-- Tracking results will be populated here -->
+                <div class="tracking-welcome">
+                    <div class="tracking-welcome-content">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h2>Welcome to Package Tracking</h2>
+                        <p>Enter a tracking number above to get detailed information about your package.</p>
+                        <div class="sample-tracking">
+                            <h4>Sample Tracking Numbers</h4>
+                            <p>Try one of these sample tracking numbers to test the functionality:</p>
+                            <ul>
+                                <li><strong>MD123456789</strong> - In Transit</li>
+                                <li><strong>MD987654321</strong> - Delivered</li>
+                                <li><strong>MD555666777</strong> - Pending</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-truck"></i>
+                        <h3>MoversDelight</h3>
+                    </div>
+                    <p>Your trusted partner in logistics and delivery services.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MoversDelight. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="tracking.js"></script>
+</body>
+</html>
