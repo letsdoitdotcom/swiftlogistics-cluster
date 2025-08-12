@@ -10,7 +10,6 @@ hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
 
-// Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
@@ -22,10 +21,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
@@ -33,21 +29,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Contact form submission
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    const formData = new FormData(contactForm);
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-
-    // Simulate form submission
     const submitBtn = contactForm.querySelector('.submit-btn');
     const originalText = submitBtn.textContent;
-    
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
-
-    // Simulate API call delay
     setTimeout(() => {
         alert(`Thank you for your message, ${name}! We'll get back to you at ${email} soon.`);
         contactForm.reset();
@@ -69,62 +56,27 @@ window.addEventListener('scroll', () => {
 });
 
 // Animate elements on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
 }, observerOptions);
 
-// Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
     const animateElements = document.querySelectorAll('.service-card, .stat, .contact-item');
-    
-    animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
+    animateElements.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(el); });
 });
 
 // Add some interactive features
 document.addEventListener('DOMContentLoaded', () => {
-    // Add hover effects to service cards
     const serviceCards = document.querySelectorAll('.service-card');
     serviceCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) scale(1)';
-        });
+        card.addEventListener('mouseenter', () => { card.style.transform = 'translateY(-10px) scale(1.02)'; });
+        card.addEventListener('mouseleave', () => { card.style.transform = 'translateY(0) scale(1)'; });
     });
-
-    // Add typing effect to hero title
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
-        const text = heroTitle.textContent;
-        heroTitle.textContent = '';
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < text.length) {
-                heroTitle.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            }
-        }
-        
-        // Start typing effect after a short delay
+        const text = heroTitle.textContent; heroTitle.textContent = ''; let i = 0;
+        function typeWriter() { if (i < text.length) { heroTitle.textContent += text.charAt(i); i++; setTimeout(typeWriter, 50); } }
         setTimeout(typeWriter, 500);
     }
 });
@@ -140,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const authCard = document.getElementById('adminAuthCard');
     const togglePwBtn = document.getElementById('togglePasswordVisibility');
     const PASSWORD = 'qwertykeyboard';
-    let targetAfterAuth = 'tracking';
 
     // Tracking admin elements
     const trackingList = document.getElementById('trackingList');
@@ -157,42 +108,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactAdminCloseBtn = document.getElementById('contactAdminCloseBtn');
     const contactEditForm = document.getElementById('contactEditForm');
     const resetContactBtn = document.getElementById('resetContactBtn');
-    const contactSaveNotice = document.getElementById('contactSaveNotice');
 
-    // Auto-detect API base (CSP safe) – assumes backend served same origin at /api
-    const API_BASE = (typeof window.TRACKING_API_BASE !== 'undefined' && window.TRACKING_API_BASE)
-        ? window.TRACKING_API_BASE
-        : '/api';
+    // API base
+    const API_BASE = '/api';
+    // Local cache mirror (robust fallback for UI and tracking page)
+    const CACHE_KEY = 'trackingCache_v2';
+    const loadCache = () => { try { return JSON.parse(localStorage.getItem(CACHE_KEY)) || {}; } catch(e){ return {}; } };
+    const saveCache = (map) => { localStorage.setItem(CACHE_KEY, JSON.stringify(map||{})); };
 
-    // Add subtle hint cursors for hidden admin triggers
     const trackingTriggerHeading = document.querySelector('.tracking-form h3');
     const contactHeading = document.querySelector('#contact .section-title');
     if(trackingTriggerHeading){ trackingTriggerHeading.style.cursor='pointer'; trackingTriggerHeading.title='(Hidden setup: Double‑click)'; }
     if(contactHeading){ contactHeading.style.cursor='pointer'; contactHeading.title='(Hidden setup: Double‑click)'; }
 
-    // ========== RESTORE HIDDEN ADMIN AUTH LOGIC (was removed) ==========
     function openAuth(mode, subtitle){
-        targetAfterAuth = mode; // reuse existing variable declared earlier
         if(subtitle){ const st = document.getElementById('adminAuthSubtitle'); if(st) st.textContent = subtitle; }
         if(authError) authError.textContent='';
         if(authPassword){ authPassword.value=''; authPassword.type='password'; }
         if(authOverlay){ authOverlay.style.display='flex'; setTimeout(()=> authPassword && authPassword.focus(),30); }
+        authForm.dataset.mode = mode;
     }
     function closeAuth(){ if(authOverlay) authOverlay.style.display='none'; }
-    function showTrackingAdmin(){ if(adminModal){ adminModal.style.display='block'; document.body.style.overflow='hidden'; renderList && renderList(); } }
-    function showContactAdmin(){ if(contactAdminModal){ contactAdminModal.style.display='block'; document.body.style.overflow='hidden'; populateContactForm && populateContactForm(); } }
+    function showTrackingAdmin(){ if(adminModal){ adminModal.style.display='block'; document.body.style.overflow='hidden'; renderList(); } }
+    function showContactAdmin(){ if(contactAdminModal){ contactAdminModal.style.display='block'; document.body.style.overflow='hidden'; populateContactForm(); } }
     function closeTrackingAdmin(){ if(adminModal){ adminModal.style.display='none'; document.body.style.overflow=''; } }
     function closeContactAdmin(){ if(contactAdminModal){ contactAdminModal.style.display='none'; document.body.style.overflow=''; } }
 
-    trackingTriggerHeading && trackingTriggerHeading.addEventListener('dblclick', ()=> openAuth('tracking','Enter password to configure tracking.'));
+    const trackingTrigger = document.querySelector('.tracking-form h3');
+    trackingTrigger && trackingTrigger.addEventListener('dblclick', ()=> openAuth('tracking','Enter password to configure tracking.'));
     contactHeading && contactHeading.addEventListener('dblclick', ()=> openAuth('contact','Enter password to configure contact info.'));
 
     authForm && authForm.addEventListener('submit', e=>{
         e.preventDefault();
-        if(!authPassword) return;
         if(authPassword.value === PASSWORD){
             closeAuth();
-            if(targetAfterAuth==='contact') showContactAdmin(); else showTrackingAdmin();
+            if(authForm.dataset.mode==='contact') showContactAdmin(); else showTrackingAdmin();
         } else {
             authError && (authError.textContent='Incorrect password');
             if(authCard){ authCard.classList.remove('admin-auth-shake'); void authCard.offsetWidth; authCard.classList.add('admin-auth-shake'); }
@@ -205,26 +155,50 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('adminCloseBtn') && document.getElementById('adminCloseBtn').addEventListener('click', closeTrackingAdmin);
     contactAdminCloseBtn && contactAdminCloseBtn.addEventListener('click', closeContactAdmin);
     window.addEventListener('keydown', e=>{ if(e.key==='Escape'){ if(authOverlay && authOverlay.style.display==='flex') closeAuth(); if(adminModal && adminModal.style.display==='block') closeTrackingAdmin(); if(contactAdminModal && contactAdminModal.style.display==='block') closeContactAdmin(); } });
-    // ====================================================================
 
-    const STORAGE_KEY = 'customTrackingData_v1';
-    const CONTACT_STORAGE_KEY = 'customContactInfo_v1';
-    let currentEditKey = null;
-
-    function loadDataLocal(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e){ return {}; } }
-    function saveDataLocal(data){ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
-    async function fetchAllRemote(){ if(!API_BASE) return null; try { const r=await fetch(`${API_BASE}/tracking`); if(!r.ok) throw 0; const list=await r.json(); const m={}; list.forEach(d=>m[d.number]=d); return m; } catch(e){ return null; } }
-    async function saveRemote(entry){ if(!API_BASE) return; try { await fetch(`${API_BASE}/tracking`, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(entry)});}catch(e){} }
-    function broadcastUpdate(){ window.dispatchEvent(new CustomEvent('tracking-data-updated')); }
-    function loadData(){ return loadDataLocal(); }
-    function saveData(data){ saveDataLocal(data); broadcastUpdate(); }
-    (async ()=>{ const remote=await fetchAllRemote(); if(remote){ saveDataLocal(remote); broadcastUpdate(); renderList(); } })();
-
+    // Tracking admin: DB + cache
     const trackingFieldIds = ['editNumber','editStatus','editStatusText','editOrigin','editDestination','editETA','editType','editWeight','editDimensions','editInsurance'];
 
-    function renderList(){ if(!trackingList) return; const data=loadData(); trackingList.innerHTML=''; const keys=Object.keys(data).sort(); if(!keys.length){ const li=document.createElement('li'); li.textContent='No tracking numbers'; li.style.opacity='.6'; trackingList.appendChild(li); return; } keys.forEach(k=>{ const li=document.createElement('li'); li.dataset.key=k; const status=data[k].status||''; li.innerHTML=`<span>${k}</span><span style="font-size:.6rem; text-transform:uppercase; color:#2563eb;">${status}</span>`; if(k===currentEditKey) li.classList.add('active'); li.addEventListener('click',()=>{ currentEditKey=k; populateTrackingForm(data[k]); renderList(); }); trackingList.appendChild(li); }); }
+    async function fetchAllRemote(){ try { const r=await fetch(`${API_BASE}/tracking`); if(!r.ok) throw 0; const list=await r.json(); const m={}; list.forEach(d=>{ if(d && d.number){ m[d.number] = d; } }); return m; } catch(e){ return null; } }
+    async function fetchOneRemote(num){ try { const r=await fetch(`${API_BASE}/tracking/${encodeURIComponent(num)}`); if(!r.ok) return null; return await r.json(); } catch(e){ return null; } }
+    async function saveRemote(entry){ try { const r=await fetch(`${API_BASE}/tracking`, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(entry)}); if(!r.ok) return null; return await r.json(); } catch(e){ return null; } }
+    async function deleteRemote(num){ try { const r = await fetch(`${API_BASE}/tracking/${encodeURIComponent(num)}`, { method:'DELETE' }); return r.ok; } catch(e){ return false; } }
 
-    function clearTrackingForm(){ trackingFieldIds.forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; }); if(timelineEventsContainer) timelineEventsContainer.innerHTML=''; currentEditKey=null; }
+    let cacheMap = loadCache();
+
+    async function refreshList(){
+        const remote = await fetchAllRemote();
+        if(remote){
+            // Merge remote into cache, remove _unsynced if server has item
+            Object.keys(remote).forEach(k=>{ cacheMap[k] = { ...(remote[k]||{}), _unsynced: false }; });
+            // Remove items from cache that no longer exist remotely and are not unsynced
+            Object.keys(cacheMap).forEach(k=>{ if(!remote[k] && !cacheMap[k]?._unsynced) delete cacheMap[k]; });
+            saveCache(cacheMap);
+        }
+        renderList();
+    }
+
+    function renderList(){
+        if(!trackingList) return;
+        trackingList.innerHTML='';
+        const keys = Object.keys(cacheMap).sort();
+        if(!keys.length){ const li=document.createElement('li'); li.textContent='No tracking numbers'; li.style.opacity='.6'; trackingList.appendChild(li); return; }
+        keys.forEach(k=>{
+            const li=document.createElement('li');
+            const status = cacheMap[k]?.status || '';
+            const unsynced = cacheMap[k]?._unsynced;
+            li.dataset.key=k;
+            li.innerHTML=`<span>${k}</span><span style="font-size:.6rem; text-transform:uppercase; color:${unsynced?'#b91c1c':'#2563eb'};">${unsynced?'offline':status}</span>`;
+            li.addEventListener('click', async ()=>{
+                const upper = k.toUpperCase();
+                const data = await fetchOneRemote(upper);
+                populateTrackingForm(data || cacheMap[upper]);
+            });
+            trackingList.appendChild(li);
+        });
+    }
+
+    function clearTrackingForm(){ trackingFieldIds.forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; }); if(timelineEventsContainer) timelineEventsContainer.innerHTML=''; }
 
     function populateTrackingForm(entry){ if(!entry) return; document.getElementById('editNumber').value=entry.number||''; document.getElementById('editStatus').value=entry.status||'pending'; document.getElementById('editStatusText').value=entry.statusText||''; document.getElementById('editOrigin').value=entry.origin||''; document.getElementById('editDestination').value=entry.destination||''; document.getElementById('editETA').value=(entry.estimatedDelivery&&entry.estimatedDelivery.length<=10)?entry.estimatedDelivery:''; document.getElementById('editType').value=entry.packageType||''; document.getElementById('editWeight').value=entry.weight||''; document.getElementById('editDimensions').value=entry.dimensions||''; document.getElementById('editInsurance').value=entry.insurance||''; if(timelineEventsContainer){ timelineEventsContainer.innerHTML=''; (entry.timeline||[]).forEach(addTimelineRowFromData); } }
 
@@ -235,35 +209,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addTrackingBtn && addTrackingBtn.addEventListener('click', ()=>{ clearTrackingForm(); document.getElementById('editNumber').focus(); });
     addTimelineEventBtn && addTimelineEventBtn.addEventListener('click', addEmptyTimelineRow);
-    trackingEditForm && trackingEditForm.addEventListener('submit', e=>{ e.preventDefault(); const num=document.getElementById('editNumber').value.trim().toUpperCase(); if(!num){ alert('Tracking number required'); return; } const data=loadData(); const timeline=Array.from(timelineEventsContainer.querySelectorAll('.timeline-event-row')).map(r=>({ date:(r.querySelector('.ev-date').value||'').replace('T',' '), title:r.querySelector('.ev-title').value.trim(), description:r.querySelector('.ev-desc').value.trim(), location:r.querySelector('.ev-location').value.trim(), active:r.querySelector('.ev-active').checked, blink:(r.querySelector('.ev-blink') ? r.querySelector('.ev-blink').checked : false) })).filter(t=> t.date||t.title||t.description||t.location); const statusVal=document.getElementById('editStatus').value; const entry={ number:num, status:statusVal, statusText: document.getElementById('editStatusText').value.trim()||inferStatusText(statusVal), origin: document.getElementById('editOrigin').value.trim(), destination: document.getElementById('editDestination').value.trim(), estimatedDelivery: document.getElementById('editETA').value, packageType: document.getElementById('editType').value.trim(), weight: document.getElementById('editWeight').value.trim(), dimensions: document.getElementById('editDimensions').value.trim(), insurance: document.getElementById('editInsurance').value.trim(), timeline }; data[num]=entry; saveData(data); currentEditKey=num; renderList(); if(adminSaveNotice){ adminSaveNotice.textContent='Saved '+ new Date().toLocaleTimeString(); adminSaveNotice.style.color='#059669'; setTimeout(()=>{adminSaveNotice.style.color='#64748b';},2000);} if(API_BASE) saveRemote(entry); });
-    deleteTrackingBtn && deleteTrackingBtn.addEventListener('click', ()=>{ if(!currentEditKey){ alert('Select a tracking number first'); return;} if(!confirm('Delete '+currentEditKey+' ?')) return; const data=loadData(); delete data[currentEditKey]; saveData(data); clearTrackingForm(); renderList(); if(adminSaveNotice){ adminSaveNotice.textContent='Deleted'; adminSaveNotice.style.color='#dc2626'; setTimeout(()=>{adminSaveNotice.style.color='#64748b';},1500);} });
-    resetAllTrackingBtn && resetAllTrackingBtn.addEventListener('click', ()=>{ if(!confirm('Remove ALL custom tracking entries?')) return; localStorage.removeItem(STORAGE_KEY); broadcastUpdate(); clearTrackingForm(); renderList(); });
 
-    // Contact info logic (DB only, no localStorage fallback)
-    let contactCache = { address:'', phone:'', email:'', hours:'' };
+    trackingEditForm && trackingEditForm.addEventListener('submit', async e=>{
+        e.preventDefault();
+        const num=document.getElementById('editNumber').value.trim().toUpperCase();
+        if(!num){ alert('Tracking number required'); return; }
+        const timeline=Array.from(timelineEventsContainer.querySelectorAll('.timeline-event-row')).map(r=>({ date:(r.querySelector('.ev-date').value||'').replace('T',' '), title:r.querySelector('.ev-title').value.trim(), description:r.querySelector('.ev-desc').value.trim(), location:r.querySelector('.ev-location').value.trim(), active:r.querySelector('.ev-active').checked, blink:(r.querySelector('.ev-blink') ? r.querySelector('.ev-blink').checked : false) })).filter(t=> t.date||t.title||t.description||t.location);
+        const statusVal=document.getElementById('editStatus').value;
+        const entry={ number:num, status:statusVal, statusText: document.getElementById('editStatusText').value.trim()||inferStatusText(statusVal), origin: document.getElementById('editOrigin').value.trim(), destination: document.getElementById('editDestination').value.trim(), estimatedDelivery: document.getElementById('editETA').value, packageType: document.getElementById('editType').value.trim(), weight: document.getElementById('editWeight').value.trim(), dimensions: document.getElementById('editDimensions').value.trim(), insurance: document.getElementById('editInsurance').value.trim(), timeline };
 
-    async function fetchContact(){
-        if(!API_BASE) { console.warn('API_BASE not set: contact info unavailable'); return; }
-        try {
-            const r = await fetch(`${API_BASE}/contact`);
-            if(!r.ok) throw 0;
-            contactCache = await r.json();
-            applyContactToDOM();
-        } catch(e){ console.error('Fetch contact failed'); }
-    }
+        // Optimistic cache update
+        cacheMap[num] = { ...entry, _unsynced: true };
+        saveCache(cacheMap);
+        renderList();
 
-    async function saveContactRemote(data){
-        if(!API_BASE) return;
-        try {
-            const r = await fetch(`${API_BASE}/contact`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
-            if(r.ok){ contactCache = await r.json(); applyContactToDOM(); }
-        } catch(e){ console.error('Save contact failed'); }
-    }
+        const saved = await saveRemote(entry);
+        if(saved){ cacheMap[num] = { ...saved, _unsynced: false }; saveCache(cacheMap); renderList(); alert('Saved'); }
+        else { alert('Save failed (kept offline). Will show in admin but won\'t be found server-side until connection is restored.'); }
+    });
 
-    function getContact(){ return contactCache; }
+    deleteTrackingBtn && deleteTrackingBtn.addEventListener('click', async ()=>{
+        const num=document.getElementById('editNumber').value.trim().toUpperCase();
+        if(!num){ alert('Enter the tracking number in the form to delete'); return;}
+        if(!confirm('Delete '+num+' ?')) return;
+        const prev = cacheMap[num];
+        delete cacheMap[num];
+        saveCache(cacheMap);
+        renderList();
+        const ok = await deleteRemote(num);
+        if(!ok){ cacheMap[num] = prev; saveCache(cacheMap); renderList(); alert('Delete failed'); }
+    });
 
-    function applyContactToDOM(){
-        const info = getContact();
+    resetAllTrackingBtn && resetAllTrackingBtn.addEventListener('click', async ()=>{
+        if(!confirm('Remove ALL tracking entries from database?')) return;
+        const keys = Object.keys(cacheMap);
+        let allOk = true;
+        for(const k of keys){ const ok = await deleteRemote(k); if(!ok) allOk = false; }
+        cacheMap = {};
+        saveCache(cacheMap);
+        renderList();
+        alert(allOk ? 'Reset complete' : 'Reset partially failed. Some items may remain on server.');
+    });
+
+    // Contact info logic — DB only
+    async function fetchContact(){ try { const r = await fetch('/api/contact'); if(!r.ok) return {}; return await r.json(); } catch(e){ return {}; } }
+    async function saveContactRemote(data){ try { const r = await fetch('/api/contact', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)}); return await r.json(); } catch(e){ return null; } }
+
+    function applyContactToDOM(info){
         const addrP = document.querySelector('.contact-item:nth-child(1) p');
         const phoneP = document.querySelector('.contact-item:nth-child(2) p');
         const emailP = document.querySelector('.contact-item:nth-child(3) p');
@@ -273,48 +265,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if(emailP) emailP.textContent = info.email||'';
         if(hoursP) hoursP.innerHTML = (info.hours||'').replace(/\n/g,'<br>');
     }
-    function populateContactForm(){
-        const info = getContact();
-        document.getElementById('editContactAddress').value = info.address||'';
-        document.getElementById('editContactPhone').value = info.phone||'';
-        document.getElementById('editContactEmail').value = info.email||'';
-        document.getElementById('editContactHours').value = info.hours||'';
-    }
 
-    async function initContact(){
-        await fetchContact();
-        populateContactForm();
-    }
+    async function populateContactForm(){ const info = await fetchContact(); document.getElementById('editContactAddress').value = info.address||''; document.getElementById('editContactPhone').value = info.phone||''; document.getElementById('editContactEmail').value = info.email||''; document.getElementById('editContactHours').value = info.hours||''; }
 
-    contactEditForm && contactEditForm.addEventListener('submit', async e=>{
-        e.preventDefault();
-        const info={
-            address: document.getElementById('editContactAddress').value.trim(),
-            phone: document.getElementById('editContactPhone').value.trim(),
-            email: document.getElementById('editContactEmail').value.trim(),
-            hours: document.getElementById('editContactHours').value.trim()
-        };
-        await saveContactRemote(info);
-        if(contactSaveNotice){
-            contactSaveNotice.textContent='Saved '+new Date().toLocaleTimeString();
-            contactSaveNotice.style.color='#059669';
-            setTimeout(()=>{contactSaveNotice.style.color='#64748b';},2000);
-        }
-    });
+    const trackingHeading = document.querySelector('.tracking-form h3');
+    trackingHeading && trackingHeading.addEventListener('dblclick', ()=> openAuth('tracking','Enter password to configure tracking.'));
 
-    resetContactBtn && resetContactBtn.addEventListener('click', async ()=>{
-        if(!confirm('Clear contact info from database?')) return;
-        await saveContactRemote({ address:'', phone:'', email:'', hours:'' });
-        populateContactForm();
-        if(contactSaveNotice){
-            contactSaveNotice.textContent='Cleared';
-            contactSaveNotice.style.color='#dc2626';
-            setTimeout(()=>{contactSaveNotice.style.color='#64748b';},2000);
-        }
-    });
-
-    initContact();
-    if(trackingList) renderList();
+    document.addEventListener('DOMContentLoaded', async ()=>{ await refreshList(); applyContactToDOM(await fetchContact()); });
+    // Also, react to cross-tab cache updates
+    window.addEventListener('storage', (e)=>{ if(e.key === CACHE_KEY){ cacheMap = loadCache(); renderList(); } });
 })();
 /******************** End Admin Hidden Setup ********************/
 

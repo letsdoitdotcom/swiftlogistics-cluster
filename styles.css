@@ -695,6 +695,8 @@ body {
     margin-bottom: 0.25rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    /* Ensure long labels wrap on small screens */
+    overflow-wrap: anywhere;
 }
 
 .tracking-info-item p {
@@ -702,6 +704,9 @@ body {
     font-weight: 600;
     font-size: 0.9rem;
     margin: 0;
+    /* Prevent overflow of long values */
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .tracking-timeline {
@@ -790,6 +795,8 @@ body {
     color: #1e293b;
     margin-bottom: 0.25rem;
     font-size: 1.1rem;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .timeline-description {
@@ -797,6 +804,9 @@ body {
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
     line-height: 1.5;
+    /* Prevent overflow in mobile */
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .timeline-location {
@@ -807,6 +817,8 @@ body {
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     display: inline-block;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .sample-tracking {
@@ -1061,6 +1073,12 @@ body {
   .tracking-header-content { gap:2rem; }
   .service-card { padding:2rem 1.5rem; }
   .contact-form { padding:2rem 1.5rem; }
+  /* Make tracking overview items more readable and tidy on small screens */
+  .tracking-info-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .tracking-info-item { padding: .7rem; }
+  .timeline-item { padding: .85rem; }
+  .timeline-date { font-size: .85rem; }
+  .timeline-title { font-size: 1rem; }
 }
 
 /* Team Section */

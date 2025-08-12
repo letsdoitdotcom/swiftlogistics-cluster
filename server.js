@@ -82,7 +82,7 @@ function sanitizeContact(body){
 
 // Routes
 app.get('/api/tracking', async (req,res)=>{
-  const docs = await Tracking.find({}, 'number status statusText origin destination estimatedDelivery packageType weight dimensions insurance updatedAt').sort('number').lean();
+  const docs = await Tracking.find({}, 'number status statusText origin destination estimatedDelivery packageType weight dimensions insurance timeline updatedAt').sort('number').lean();
   res.json(docs);
 });
 
