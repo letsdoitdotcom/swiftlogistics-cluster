@@ -216,14 +216,22 @@ function showTrackingResults(data) {
 
     const infoHTML = infoMap.map(item=>`<div class="tracking-info-item"><h4>${item.label}</h4><p>${item.val}</p></div>`).join('');
 
-    const timelineHTML = (data.timeline||[]).map(item => `
-        <div class="timeline-item ${item.active ? 'active' : ''}">
-            <div class="timeline-date">${item.date || ''}</div>
-            <div class="timeline-title">${item.title || ''}</div>
-            <div class="timeline-description">${item.description || ''}</div>
-            <div class="timeline-location">${item.location || ''}</div>
-        </div>
-    `).join('');
+    const timeline = (data.timeline||[]);
+    const anyBlink = timeline.some(t=> t.blink);
+    const lastActiveIndex = [...timeline].map((t,i)=> t.active?i:-1).filter(i=>i!==-1).pop();
+    const timelineHTML = timeline.map((item, idx) => {
+        const shouldBlink = item.blink || (!anyBlink && idx === lastActiveIndex);
+        const classes = ['timeline-item'];
+        if(item.active) classes.push('active');
+        if(shouldBlink && item.active) classes.push('blink');
+        return `
+            <div class="${classes.join(' ')}">
+                <div class="timeline-date">${item.date || ''}</div>
+                <div class="timeline-title">${item.title || ''}</div>
+                <div class="timeline-description">${item.description || ''}</div>
+                <div class="timeline-location">${item.location || ''}</div>
+            </div>`;
+    }).join('');
 
     trackingResults.innerHTML = `
         <div class="tracking-result">

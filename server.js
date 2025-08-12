@@ -25,7 +25,8 @@ const timelineEventSchema = new mongoose.Schema({
   title: String,
   description: String,
   location: String,
-  active: Boolean
+  active: Boolean,
+  blink: Boolean // new: allows front-end to animate a chosen event
 },{ _id:false });
 
 const trackingSchema = new mongoose.Schema({

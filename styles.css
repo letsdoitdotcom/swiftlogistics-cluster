@@ -756,9 +756,26 @@ body {
     box-shadow: 0 0 0 2px #e2e8f0;
 }
 
+/* Ensure active dot is green (no animation by default) */
 .timeline-item.active::before {
-    background: #10b981;
-    box-shadow: 0 0 0 2px #10b981;
+  background: #10b981;
+  box-shadow: 0 0 0 2px #10b981;
+  animation: none; /* no blink by default */
+}
+
+/* Blink only when admin marks event to blink */
+.timeline-item.active.blink::before {
+  animation: subtlePulse 2.8s ease-out infinite;
+}
+
+@keyframes subtlePulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 2px rgba(16,185,129,1); opacity: 1; }
+  60% { transform: scale(1.06); box-shadow: 0 0 0 7px rgba(16,185,129,0.12); opacity: 0.92; }
+  100% { transform: scale(1); box-shadow: 0 0 0 2px rgba(16,185,129,1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-item.active.blink::before { animation: none; }
 }
 
 .timeline-date {
