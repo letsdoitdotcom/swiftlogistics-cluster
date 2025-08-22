@@ -271,6 +271,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const trackingHeading = document.querySelector('.tracking-form h3');
     trackingHeading && trackingHeading.addEventListener('dblclick', ()=> openAuth('tracking','Enter password to configure tracking.'));
 
+    contactEditForm && contactEditForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = {
+            address: document.getElementById('editContactAddress').value,
+            phone: document.getElementById('editContactPhone').value,
+            email: document.getElementById('editContactEmail').value,
+            hours: document.getElementById('editContactHours').value
+        };
+        const saved = await saveContactRemote(data);
+        if (saved) {
+            applyContactToDOM(saved); // Update the main UI with the new info
+            alert('Contact info saved!');
+            closeContactAdmin(); // Optionally close the modal
+        } else {
+            alert('Failed to save contact info.');
+        }
+    });
+
     document.addEventListener('DOMContentLoaded', async ()=>{ await refreshList(); applyContactToDOM(await fetchContact()); });
     // Also, react to cross-tab cache updates
     window.addEventListener('storage', (e)=>{ if(e.key === CACHE_KEY){ cacheMap = loadCache(); renderList(); } });
