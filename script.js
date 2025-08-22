@@ -252,8 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Contact info logic — DB only
-    async function fetchContact(){ try { const r = await fetch('/api/contact'); if(!r.ok) return {}; return await r.json(); } catch(e){ return {}; } }
-    async function saveContactRemote(data){ try { const r = await fetch('/api/contact', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)}); return await r.json(); } catch(e){ return null; } }
+    async function fetchContact(){ try { const r = await fetch(`${API_BASE}/contact`); if(!r.ok) return {}; return await r.json(); } catch(e){ return {}; } }
+    async function saveContactRemote(data){ try { const r = await fetch(`${API_BASE}/contact`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)}); return await r.json(); } catch(e){ return null; } }
 
     function applyContactToDOM(info){
         const addrP = document.querySelector('.contact-item:nth-child(1) p');
