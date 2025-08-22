@@ -79,7 +79,7 @@ const sampleTrackingData = {
 };
 
 // Remote DB access
-const API_BASE = (typeof window.TRACKING_API_BASE !== 'undefined' && window.TRACKING_API_BASE) ? window.TRACKING_API_BASE : '/api';
+const API_BASE = window.API_BASE || 'https://movers-xvn7.onrender.com/api';
 async function fetchTrackingRemote(num){
   try {
     const r = await fetch(`${API_BASE}/tracking/${encodeURIComponent(num)}`);

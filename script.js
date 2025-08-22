@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetContactBtn = document.getElementById('resetContactBtn');
 
     // API base
-    const API_BASE = '/api';
+    const API_BASE = window.API_BASE || 'https://movers-xvn7.onrender.com/api';
     // Local cache mirror (robust fallback for UI and tracking page)
     const CACHE_KEY = 'trackingCache_v2';
     const loadCache = () => { try { return JSON.parse(localStorage.getItem(CACHE_KEY)) || {}; } catch(e){ return {}; } };
