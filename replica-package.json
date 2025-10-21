@@ -2,11 +2,11 @@
   "name": "swift-logistics",
   "version": "1.0.0",
   "description": "SwiftLogistics - Modern logistics platform with real-time tracking and MongoDB backend",
-  "main": "server.js",
+  "main": "replica-server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node replica-server.js",
+    "dev": "nodemon replica-server.js"
   },
   "dependencies": {
     "compression": "^1.7.4",

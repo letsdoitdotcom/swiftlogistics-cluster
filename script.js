@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const authError = document.getElementById('adminAuthError');
     const authCard = document.getElementById('adminAuthCard');
     const togglePwBtn = document.getElementById('togglePasswordVisibility');
-    const PASSWORD = 'qwertykeyboard';
+    const PASSWORD = 'swift2025admin';
 
     // Tracking admin elements
     const trackingList = document.getElementById('trackingList');
@@ -110,9 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetContactBtn = document.getElementById('resetContactBtn');
 
     // API base
-    const API_BASE = window.API_BASE || 'https://movers-xvn7.onrender.com/api';
+    const API_BASE = window.API_BASE || 'https://YOUR-RENDER-APP-NAME.onrender.com/api';
     // Local cache mirror (robust fallback for UI and tracking page)
-    const CACHE_KEY = 'trackingCache_v2';
+    const CACHE_KEY = 'swiftLogisticsCache_v1';
     const loadCache = () => { try { return JSON.parse(localStorage.getItem(CACHE_KEY)) || {}; } catch(e){ return {}; } };
     const saveCache = (map) => { localStorage.setItem(CACHE_KEY, JSON.stringify(map||{})); };
 

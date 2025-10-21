@@ -19,67 +19,67 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
 
 // Sample tracking data (demo only; real entries come from DB)
 const sampleTrackingData = {
-  'MD123456789': {
-    number: 'MD123456789',
+  'SL123456789': {
+    number: 'SL123456789',
     status: 'in-transit',
-    statusText: 'In Transit',
-    origin: 'New York, NY',
-    destination: 'Los Angeles, CA',
-    estimatedDelivery: '2024-01-15',
-    packageType: 'Express Delivery',
-    weight: '2.5 kg',
-    dimensions: '30 x 20 x 15 cm',
-    insurance: 'Yes - $500 coverage',
-    timeline: [
-      { date: '2024-01-10 08:30 AM', title: 'Package Picked Up', description: 'Package has been picked up from sender at New York, NY', location: 'New York, NY', active: true },
-      { date: '2024-01-10 02:15 PM', title: 'In Transit', description: 'Package is in transit to destination', location: 'In Transit', active: true },
-      { date: '2024-01-11 09:45 AM', title: 'Arrived at Sorting Facility', description: 'Package arrived at sorting facility in Chicago', location: 'Chicago, IL', active: true },
-      { date: '2024-01-12 11:20 AM', title: 'Out for Delivery', description: 'Package is out for delivery', location: 'Los Angeles, CA', active: false },
-      { date: '2024-01-15 10:00 AM', title: 'Delivered', description: 'Package has been delivered to recipient', location: 'Los Angeles, CA', active: false }
-    ]
-  },
-  'MD987654321': {
-    number: 'MD987654321',
-    status: 'delivered',
-    statusText: 'Delivered',
-    origin: 'Miami, FL',
-    destination: 'Seattle, WA',
-    estimatedDelivery: '2024-01-08',
-    packageType: 'Standard Delivery',
+    statusText: 'In Transit (AI Optimized)',
+    origin: 'San Francisco, CA',
+    destination: 'New York, NY',
+    estimatedDelivery: '2025-10-22',
+    packageType: 'AI Express Delivery',
     weight: '1.8 kg',
-    dimensions: '25 x 18 x 12 cm',
-    insurance: 'Yes - $300 coverage',
+    dimensions: '28 x 22 x 18 cm',
+    insurance: 'Yes - $750 coverage',
     timeline: [
-      { date: '2024-01-05 10:00 AM', title: 'Package Picked Up', description: 'Package has been picked up from sender at Miami, FL', location: 'Miami, FL', active: true },
-      { date: '2024-01-06 03:30 PM', title: 'In Transit', description: 'Package is in transit to destination', location: 'In Transit', active: true },
-      { date: '2024-01-07 01:15 PM', title: 'Arrived at Sorting Facility', description: 'Package arrived at sorting facility in Denver', location: 'Denver, CO', active: true },
-      { date: '2024-01-08 08:45 AM', title: 'Out for Delivery', description: 'Package is out for delivery', location: 'Seattle, WA', active: true },
-      { date: '2024-01-08 02:30 PM', title: 'Delivered', description: 'Package has been delivered to recipient', location: 'Seattle, WA', active: true }
+      { date: '2025-10-20 09:30 AM', title: 'Smart Pickup Completed', description: 'Package collected using AI route optimization', location: 'San Francisco, CA', active: true, blink: true },
+      { date: '2025-10-20 02:45 PM', title: 'AI Route Analysis', description: 'Machine learning algorithms processing optimal delivery path', location: 'In Transit', active: true },
+      { date: '2025-10-21 08:15 AM', title: 'Sorting Hub - Denver', description: 'Automated sorting with robotic precision', location: 'Denver, CO', active: true },
+      { date: '2025-10-21 06:30 PM', title: 'Predictive Loading', description: 'AI-predicted optimal cargo placement', location: 'Denver, CO', active: false },
+      { date: '2025-10-22 10:00 AM', title: 'Smart Delivery', description: 'Final mile delivery with precision timing', location: 'New York, NY', active: false }
     ]
   },
-  'MD555666777': {
-    number: 'MD555666777',
-    status: 'pending',
-    statusText: 'Pending',
-    origin: 'Boston, MA',
-    destination: 'San Francisco, CA',
-    estimatedDelivery: '2024-01-20',
-    packageType: 'Premium Delivery',
-    weight: '5.2 kg',
-    dimensions: '40 x 30 x 25 cm',
-    insurance: 'Yes - $1000 coverage',
+  'SL987654321': {
+    number: 'SL987654321',
+    status: 'delivered',
+    statusText: 'Delivered (Blockchain Verified)',
+    origin: 'Austin, TX',
+    destination: 'Boston, MA',
+    estimatedDelivery: '2025-10-18',
+    packageType: 'Secure Tech Delivery',
+    weight: '3.2 kg',
+    dimensions: '35 x 25 x 20 cm',
+    insurance: 'Yes - $1200 coverage',
     timeline: [
-      { date: '2024-01-13 09:00 AM', title: 'Package Received', description: 'Package received at our facility', location: 'Boston, MA', active: true },
-      { date: '2024-01-14 10:30 AM', title: 'Processing', description: 'Package is being processed for shipment', location: 'Boston, MA', active: false },
-      { date: '2024-01-15 08:00 AM', title: 'Scheduled for Pickup', description: 'Package scheduled for pickup', location: 'Boston, MA', active: false },
-      { date: '2024-01-16 09:00 AM', title: 'In Transit', description: 'Package will be in transit', location: 'In Transit', active: false },
-      { date: '2024-01-20 10:00 AM', title: 'Estimated Delivery', description: 'Estimated delivery date', location: 'San Francisco, CA', active: false }
+      { date: '2025-10-16 11:00 AM', title: 'Quantum Pickup', description: 'Secure collection with biometric verification', location: 'Austin, TX', active: true },
+      { date: '2025-10-16 04:20 PM', title: 'Blockchain Recording', description: 'Package data immutably recorded on blockchain', location: 'In Transit', active: true },
+      { date: '2025-10-17 09:45 AM', title: 'Smart Hub Processing', description: 'AI-powered facility processing completed', location: 'Dallas, TX', active: true },
+      { date: '2025-10-18 07:30 AM', title: 'Final Mile AI', description: 'Intelligent last-mile delivery optimization', location: 'Boston, MA', active: true },
+      { date: '2025-10-18 01:15 PM', title: 'Secure Delivery', description: 'Biometric-verified delivery completed', location: 'Boston, MA', active: true }
+    ]
+  },
+  'SL555666777': {
+    number: 'SL555666777',
+    status: 'pending',
+    statusText: 'Processing (Smart Sorting)',
+    origin: 'Seattle, WA',
+    destination: 'Miami, FL',
+    estimatedDelivery: '2025-10-25',
+    packageType: 'Premium AI Logistics',
+    weight: '4.1 kg',
+    dimensions: '42 x 32 x 28 cm',
+    insurance: 'Yes - $2000 coverage',
+    timeline: [
+      { date: '2025-10-20 10:30 AM', title: 'AI Intake Scan', description: 'Package received and analyzed by computer vision', location: 'Seattle, WA', active: true },
+      { date: '2025-10-20 02:15 PM', title: 'Smart Classification', description: 'AI categorization and route planning in progress', location: 'Seattle, WA', active: false },
+      { date: '2025-10-21 08:00 AM', title: 'Predictive Routing', description: 'Machine learning route optimization scheduled', location: 'Seattle, WA', active: false },
+      { date: '2025-10-22 09:30 AM', title: 'AI Transit Launch', description: 'Intelligent transportation network activation', location: 'In Transit', active: false },
+      { date: '2025-10-25 11:00 AM', title: 'Smart Delivery', description: 'AI-predicted optimal delivery window', location: 'Miami, FL', active: false }
     ]
   }
 };
 
 // Remote DB access
-const API_BASE = window.API_BASE || 'https://movers-xvn7.onrender.com/api';
+const API_BASE = window.API_BASE || 'https://YOUR-RENDER-APP-NAME.onrender.com/api';
 async function fetchTrackingRemote(num){
   try {
     const r = await fetch(`${API_BASE}/tracking/${encodeURIComponent(num)}`);
@@ -88,7 +88,7 @@ async function fetchTrackingRemote(num){
   } catch(e){ return null; }
 }
 
-function loadAdminCache(){ try { return JSON.parse(localStorage.getItem('trackingCache_v2')) || {}; } catch(e){ return {}; } }
+function loadAdminCache(){ try { return JSON.parse(localStorage.getItem('swiftLogisticsCache_v1')) || {}; } catch(e){ return {}; } }
 
 async function getTrackingData(trackingNumber){
   const remote = await fetchTrackingRemote(trackingNumber);
@@ -246,7 +246,7 @@ trackingInput.addEventListener('keypress', (e)=>{ if(e.key==='Enter'){ e.prevent
 
 // Re-run tracking automatically if cache updates for current value
 window.addEventListener('storage', (e)=>{
-  if(e.key === 'trackingCache_v2'){
+  if(e.key === 'swiftLogisticsCache_v1'){
     const current = (trackingInput.value||'').trim().toUpperCase();
     if(current) { trackPackage(current); }
   }

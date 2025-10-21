@@ -16,7 +16,7 @@ app.use(compression());
 app.use(morgan('dev'));
 
 // Mongo connection
-const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/moversdelight';
+const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/swiftlogistics';
 mongoose.connect(mongoUri, { autoIndex: true }).then(()=> console.log('MongoDB connected')).catch(err=> console.error('Mongo error', err));
 
 // Schema & Model
