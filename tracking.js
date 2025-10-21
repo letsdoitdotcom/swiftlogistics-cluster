@@ -79,7 +79,7 @@ const sampleTrackingData = {
 };
 
 // Remote DB access
-const API_BASE = window.API_BASE || 'https://YOUR-RENDER-APP-NAME.onrender.com/api';
+const API_BASE = window.API_BASE || 'https://swiftlogistics-cluster.onrender.com/api';
 async function fetchTrackingRemote(num){
   try {
     const r = await fetch(`${API_BASE}/tracking/${encodeURIComponent(num)}`);

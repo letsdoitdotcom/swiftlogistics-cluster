@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetContactBtn = document.getElementById('resetContactBtn');
 
     // API base
-    const API_BASE = window.API_BASE || 'https://YOUR-RENDER-APP-NAME.onrender.com/api';
+    const API_BASE = window.API_BASE || 'https://swiftlogistics-cluster.onrender.com/api';
     // Local cache mirror (robust fallback for UI and tracking page)
     const CACHE_KEY = 'swiftLogisticsCache_v1';
     const loadCache = () => { try { return JSON.parse(localStorage.getItem(CACHE_KEY)) || {}; } catch(e){ return {}; } };
