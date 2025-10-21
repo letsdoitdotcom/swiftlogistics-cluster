@@ -1063,7 +1063,9 @@ body {
 .timeline-events-container { display:flex; flex-direction:column; gap:.6rem; margin-top:.6rem; }
 .timeline-event-row { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:.55rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:.4rem; position:relative; }
 .timeline-event-row input { width:100%; padding:.4rem .5rem; border:1px solid #d1d9e5; border-radius:6px; font-size:.7rem; }
-.timeline-event-row .event-active-flag { display:flex; align-items:center; gap:.35rem; font-size:.65rem; }
+.timeline-event-row .event-flags-container { display:flex; gap:1rem; margin:.5rem 0; }
+.timeline-event-row .event-flag-item { display:flex; align-items:center; gap:.3rem; font-size:.65rem; flex-direction:column; align-items:flex-start; }
+.timeline-event-row .event-flag-item input { margin-bottom:.2rem; }
 .timeline-event-row .remove-event-btn { position: static; background:#fee2e2; border:none; color:#b91c1c; width:auto; height:auto; padding:.35rem .55rem; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; font-size:.75rem; }
 .timeline-event-row .remove-event-btn:hover { background:#fecaca; }
 .admin-small-btn, .admin-primary-btn, .admin-danger-btn, .admin-warning-btn { border:none; cursor:pointer; font-size:.7rem; font-weight:600; border-radius:8px; padding:.5rem .75rem; display:inline-flex; gap:.4rem; align-items:center; }
