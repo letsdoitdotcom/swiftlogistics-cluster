@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const authError = document.getElementById('adminAuthError');
     const authCard = document.getElementById('adminAuthCard');
     const togglePwBtn = document.getElementById('togglePasswordVisibility');
-    const PASSWORD = 'swift2025admin';
+    const PASSWORD = 'qwertykeyboard';
 
     // Tracking admin elements
     const trackingList = document.getElementById('trackingList');
