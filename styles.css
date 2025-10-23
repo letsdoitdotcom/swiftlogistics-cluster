@@ -123,9 +123,58 @@ body {
 }
 
 @media (max-width: 900px) {
-  .nav-menu { position:absolute; top:70px; right:20px; background:#ffffff; flex-direction:column; gap:1rem; padding:1.2rem 1.4rem; border-radius:14px; box-shadow:0 15px 40px -10px rgba(0,0,0,.15); min-width:200px; opacity:0; pointer-events:none; transform:translateY(-10px); transition:.3s; }
-  .nav-menu.active { opacity:1; pointer-events:auto; transform:translateY(0); }
-  .hamburger { display:flex; }
+  .nav-menu { 
+    position: absolute; 
+    top: 70px; 
+    right: 20px; 
+    background: rgba(255, 255, 255, 0.95); 
+    backdrop-filter: blur(20px);
+    flex-direction: column; 
+    gap: 1.5rem; 
+    padding: 2rem 1.5rem; 
+    border-radius: 20px; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
+    min-width: 220px; 
+    opacity: 0; 
+    pointer-events: none; 
+    transform: translateY(-10px); 
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .nav-menu.active { 
+    opacity: 1; 
+    pointer-events: auto; 
+    transform: translateY(0); 
+  }
+  
+  .nav-menu .nav-link {
+    color: #1e293b !important;
+    background: rgba(245, 158, 11, 0.1) !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+    padding: 1rem 1.5rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  .nav-menu .nav-link:hover,
+  .nav-menu .nav-link:active,
+  .nav-menu .nav-link:focus {
+    background: rgba(245, 158, 11, 0.2) !important;
+    color: #1e293b !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: rgba(245, 158, 11, 0.3) !important;
+  }
+  
+  .hamburger { 
+    display: flex; 
+  }
 }
 .hamburger.active .bar:nth-child(1){ transform:translateY(6px) rotate(45deg); }
 .hamburger.active .bar:nth-child(2){ opacity:0; }
@@ -1615,6 +1664,89 @@ body {
     padding: 0 1rem;
     max-width: 100%;
     margin: 0 auto;
+  }
+  
+  /* Remove all hover effects on mobile */
+  .service-card:hover,
+  .service-card:active,
+  .service-card:focus {
+    transform: none !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+  }
+  
+  .service-card:hover::before,
+  .service-card:active::before,
+  .service-card:focus::before {
+    opacity: 0 !important;
+  }
+  
+  .service-card:hover .service-icon,
+  .service-card:active .service-icon,
+  .service-card:focus .service-icon {
+    transform: none !important;
+  }
+  
+  .service-card:hover .service-icon::before,
+  .service-card:active .service-icon::before,
+  .service-card:focus .service-icon::before {
+    opacity: 0 !important;
+    animation: none !important;
+  }
+  
+  .contact-item:hover,
+  .contact-item:active,
+  .contact-item:focus {
+    transform: none !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    border-color: rgba(124, 58, 237, 0.1) !important;
+  }
+  
+  .contact-icon:hover::before,
+  .contact-icon:active::before,
+  .contact-icon:focus::before {
+    opacity: 0 !important;
+    animation: none !important;
+  }
+  
+  .about-text:hover::before,
+  .about-text:active::before,
+  .about-text:focus::before {
+    opacity: 0 !important;
+  }
+  
+  .stat:hover,
+  .stat:active,
+  .stat:focus {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  .tracking-button:hover,
+  .tracking-button:active,
+  .tracking-button:focus {
+    transform: none !important;
+    background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%) !important;
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3) !important;
+  }
+  
+  .tracking-button:hover::before,
+  .tracking-button:active::before,
+  .tracking-button:focus::before {
+    left: -100% !important;
+  }
+  
+  .submit-btn:hover,
+  .submit-btn:active,
+  .submit-btn:focus {
+    transform: none !important;
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3) !important;
+  }
+  
+  .submit-btn:hover::before,
+  .submit-btn:active::before,
+  .submit-btn:focus::before {
+    left: -100% !important;
   }
   
   .hero-container { 
