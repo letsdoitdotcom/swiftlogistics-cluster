@@ -4,6 +4,7 @@ const navMenu = document.querySelector('.nav-menu');
 const trackingInput = document.getElementById('trackingNumber');
 const trackButton = document.getElementById('trackButton');
 const trackingResults = document.getElementById('trackingResults');
+const trackingLoader = document.getElementById('trackingLoader');
 
 // Mobile Navigation Toggle
 hamburger.addEventListener('click', () => {
@@ -16,6 +17,49 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
 }));
+
+// Loading Animation Functions
+function showTrackingLoader() {
+    if (trackingLoader) {
+        trackingLoader.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        // Update loading text dynamically
+        const loaderText = trackingLoader.querySelector('.loader-text');
+        const loaderSubtext = trackingLoader.querySelector('.loader-subtext');
+        
+        const messages = [
+            { text: 'Scanning Neural Networks', sub: 'Analyzing quantum delivery pathways...' },
+            { text: 'Connecting to AI Matrix', sub: 'Establishing secure blockchain connection...' },
+            { text: 'Processing Tracking Data', sub: 'Decrypting shipment coordinates...' },
+            { text: 'Validating Biometric Seals', sub: 'Verifying tamper-proof packaging...' },
+            { text: 'Almost Ready', sub: 'Finalizing predictive analytics...' }
+        ];
+        
+        let messageIndex = 0;
+        const messageInterval = setInterval(() => {
+            messageIndex = (messageIndex + 1) % messages.length;
+            if (loaderText) loaderText.textContent = messages[messageIndex].text;
+            if (loaderSubtext) loaderSubtext.textContent = messages[messageIndex].sub;
+        }, 500);
+        
+        // Store interval so we can clear it
+        trackingLoader.messageInterval = messageInterval;
+    }
+}
+
+function hideTrackingLoader() {
+    if (trackingLoader) {
+        trackingLoader.classList.remove('show');
+        document.body.style.overflow = '';
+        
+        // Clear the message interval
+        if (trackingLoader.messageInterval) {
+            clearInterval(trackingLoader.messageInterval);
+            trackingLoader.messageInterval = null;
+        }
+    }
+}
 
 // Sample tracking data (demo only; real entries come from DB)
 const sampleTrackingData = {
@@ -238,7 +282,30 @@ trackButton.addEventListener('click', (e)=>{
   e.preventDefault();
   const trackingNumber = trackingInput.value.trim().toUpperCase();
   if(!trackingNumber){ showTrackingError('Please enter a tracking number.'); return; }
-  startSimulatedTracking(trackingNumber);
+  
+  // Show the new loading animation
+  showTrackingLoader();
+  trackButton.disabled = true; 
+  trackButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Tracking...';
+  trackingInput.disabled = true;
+  
+  // Get tracking data and show results after dramatic loading
+  setTimeout(async () => {
+    hideTrackingLoader();
+    
+    const data = await getTrackingData(trackingNumber);
+    
+    // Re-enable controls
+    trackButton.disabled = false; 
+    trackButton.innerHTML = '<i class="fas fa-search"></i> Track Package';
+    trackingInput.disabled = false;
+    
+    if (data) {
+      displayTrackingResults(data);
+    } else {
+      showTrackingError('Tracking number not found. Please check and try again.');
+    }
+  }, 2500); // 2.5 seconds for full effect
 });
 
 // Keep Enter key support

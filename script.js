@@ -3,6 +3,7 @@ const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const trackingForm = document.getElementById('trackingForm');
 const contactForm = document.getElementById('contactForm');
+const trackingLoader = document.getElementById('trackingLoader');
 
 // Mobile Navigation Toggle
 hamburger.addEventListener('click', () => {
@@ -25,6 +26,70 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Enhanced Tracking Form with Loading Animation
+trackingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const trackingNumber = document.getElementById('trackingNumber').value.trim();
+    const submitBtn = trackingForm.querySelector('.tracking-button');
+    
+    if (!trackingNumber) {
+        alert('Please enter a tracking number');
+        return;
+    }
+    
+    // Show loading animation
+    showTrackingLoader();
+    
+    // Simulate network delay for dramatic effect
+    setTimeout(() => {
+        hideTrackingLoader();
+        // Navigate to tracking page with the number
+        window.location.href = `tracking.html?tracking=${encodeURIComponent(trackingNumber)}`;
+    }, 2500); // 2.5 seconds for full effect
+});
+
+function showTrackingLoader() {
+    if (trackingLoader) {
+        trackingLoader.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        // Update loading text dynamically
+        const loaderText = trackingLoader.querySelector('.loader-text');
+        const loaderSubtext = trackingLoader.querySelector('.loader-subtext');
+        
+        const messages = [
+            { text: 'Scanning Neural Networks', sub: 'Analyzing quantum delivery pathways...' },
+            { text: 'Connecting to AI Matrix', sub: 'Establishing secure blockchain connection...' },
+            { text: 'Processing Tracking Data', sub: 'Decrypting shipment coordinates...' },
+            { text: 'Almost Ready', sub: 'Finalizing predictive analytics...' }
+        ];
+        
+        let messageIndex = 0;
+        const messageInterval = setInterval(() => {
+            messageIndex = (messageIndex + 1) % messages.length;
+            if (loaderText) loaderText.textContent = messages[messageIndex].text;
+            if (loaderSubtext) loaderSubtext.textContent = messages[messageIndex].sub;
+        }, 600);
+        
+        // Store interval so we can clear it
+        trackingLoader.messageInterval = messageInterval;
+    }
+}
+
+function hideTrackingLoader() {
+    if (trackingLoader) {
+        trackingLoader.classList.remove('show');
+        document.body.style.overflow = '';
+        
+        // Clear the message interval
+        if (trackingLoader.messageInterval) {
+            clearInterval(trackingLoader.messageInterval);
+            trackingLoader.messageInterval = null;
+        }
+    }
+}
 
 // Contact form submission
 contactForm.addEventListener('submit', (e) => {
