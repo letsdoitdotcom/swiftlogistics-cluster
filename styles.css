@@ -1676,19 +1676,61 @@ body {
 @keyframes authShake { 10%, 90% { transform:translateX(-2px);} 20%, 80% { transform:translateX(4px);} 30%,70% { transform:translateX(-8px);} 40%,60% { transform:translateX(8px);} 50% { transform:translateX(-10px);} }
 
 @media (max-width: 768px) {
-  /* Ensure all content stays centered and doesn't overflow */
+  /* Prevent horizontal overflow and ensure proper mobile layout */
   * {
     box-sizing: border-box;
+    max-width: 100%;
   }
   
-  body {
+  /* Prevent any element from causing horizontal scroll */
+  body * {
+    max-width: 100% !important;
+  }
+  
+  /* Specific fixes for common overflow elements */
+  img, video, iframe, canvas, svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  html, body {
     overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
   
   .container {
     padding: 0 1rem;
     max-width: 100%;
     margin: 0 auto;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Ensure all sections stay within viewport */
+  .hero, .services, .about, .contact {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  /* Fix navbar on mobile */
+  .navbar {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+  }
+  
+  .nav-container {
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   
   /* Remove all hover effects on mobile */
@@ -1779,6 +1821,9 @@ body {
     min-height: 100vh;
     padding-top: 80px;
     padding-bottom: 1rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .hero-container { 
@@ -1787,7 +1832,9 @@ body {
     text-align: center; 
     padding: 0 1rem;
     max-width: 100%;
+    width: 100%;
     justify-content: center;
+    box-sizing: border-box;
   }
   
   .hero-title { 
@@ -1805,8 +1852,10 @@ body {
   
   .tracking-form {
     margin: 1rem auto;
-    padding: 2rem 1.5rem;
-    max-width: 100%;
+    padding: 2rem 1rem;
+    max-width: calc(100% - 2rem);
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .tracking-form h3 {
@@ -1826,6 +1875,7 @@ body {
     width: 100%;
     max-width: 100%;
     gap: 1rem;
+    box-sizing: border-box;
   }
   
   .tracking-input {
@@ -1833,12 +1883,16 @@ body {
     margin-bottom: 0;
     padding: 1rem;
     font-size: 1rem;
+    box-sizing: border-box;
+    max-width: 100%;
   }
   
   .tracking-button {
     width: 100%;
     padding: 1rem;
     font-size: 1rem;
+    box-sizing: border-box;
+    max-width: 100%;
   }
   
   .about-content { 
@@ -1888,13 +1942,17 @@ body {
   .services-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
-    padding: 1rem;
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 100%;
   }
   
   .service-card {
     margin: 0 auto;
     max-width: 100%;
+    width: 100%;
     padding: 2rem 1rem;
+    box-sizing: border-box;
   }
   
   .contact-content { 
