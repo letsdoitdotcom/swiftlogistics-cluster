@@ -88,25 +88,25 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: #ffffff !important;
+    color: #1e293b !important;
     font-weight: 600;
     transition: all 0.3s ease;
     position: relative;
     padding: 0.75rem 1.5rem;
     border-radius: 0.75rem;
-    background: rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
     backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border: 1px solid rgba(124, 58, 237, 0.3) !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-shadow: none;
 }
 
 .nav-link:hover {
-    color: #1e1b4b !important;
-    background: rgba(245, 158, 11, 0.95) !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%) !important;
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
-    border-color: #f59e0b !important;
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+    border-color: #7c3aed !important;
 }
 
 .hamburger {
@@ -126,17 +126,17 @@ body {
 /* Desktop Navigation - Ensure visibility on large screens */
 @media (min-width: 901px) {
   .nav-link {
-    color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.3) !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    color: #1e293b !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(124, 58, 237, 0.3) !important;
     backdrop-filter: blur(15px) !important;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+    text-shadow: none !important;
   }
   
   .nav-link:hover {
-    color: #1e1b4b !important;
-    background: rgba(245, 158, 11, 0.95) !important;
-    border-color: #f59e0b !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%) !important;
+    border-color: #7c3aed !important;
     transform: translateY(-3px) !important;
   }
 }
@@ -1727,8 +1727,17 @@ body {
     overflow-x: hidden;
     overflow-y: visible;
     overflow: visible;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 4rem 0;
+    box-sizing: border-box;
+  }
+  
+  .about .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
   
   /* Fix navbar on mobile */
@@ -1911,12 +1920,16 @@ body {
   
   .about-content { 
     grid-template-columns: 1fr; 
-    gap: 3rem;
+    gap: 2rem;
     text-align: center;
-    padding: 0;
+    padding: 0 1rem;
     height: auto;
     overflow: visible;
     align-items: start;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    justify-items: center;
   }
   
   .about-text {
@@ -1927,6 +1940,7 @@ body {
     width: 100%;
     height: auto;
     overflow: visible;
+    display: block;
   }
   
   .about-text p {
@@ -1935,6 +1949,10 @@ body {
     word-wrap: break-word;
     overflow-wrap: break-word;
     margin: 0 0 1.5rem 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    text-align: left;
   }
   
   .about h2,
@@ -1945,17 +1963,22 @@ body {
   }
   
   .about-graphic { 
-    width: 250px; 
-    height: 250px; 
-    font-size: 5rem; 
+    width: 200px; 
+    height: 200px; 
+    font-size: 4rem; 
     margin: 0 auto;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   
   .stats { 
     grid-template-columns: 1fr; 
     gap: 1.5rem; 
-    max-width: 300px;
+    max-width: 100%;
+    width: 100%;
     margin: 2rem auto 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
   
   .services-grid {
@@ -2076,12 +2099,19 @@ body {
   
   .about-text {
     padding: 1.5rem;
-    margin: 0 1rem;
+    margin: 0 auto;
+    max-width: calc(100% - 2rem);
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .about-text p {
     font-size: 1rem;
     text-align: left;
+    width: 100%;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
   
   .stats {
