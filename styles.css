@@ -115,14 +115,25 @@ body {
     cursor: pointer;
     z-index: 15001;
     position: relative;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 6px 18px rgba(11,15,30,0.12);
+    transition: transform 160ms ease, background 160ms ease;
 }
 
 .bar {
-    width: 25px;
-    height: 3px;
-    background: #e2e8f0;
+    width: 20px;
+    height: 2px;
+    background: #e6eef8;
     margin: 3px 0;
-    transition: 0.3s;
+    transition: transform 220ms cubic-bezier(.2,.9,.2,1), opacity 120ms ease, background 120ms ease;
+    border-radius: 2px;
+    display: block;
 }
 
 /* Desktop Navigation - Ensure visibility on large screens */
@@ -156,17 +167,18 @@ body {
             background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,255,0.95)) !important;
             display: flex !important;
             flex-direction: column;
-            gap: 1rem;
-            padding: 1.25rem 1.25rem 2rem;
-            border-radius: 14px;
-            box-shadow: 0 20px 60px rgba(6,8,23,0.25), 0 6px 18px rgba(124,58,237,0.06);
+            gap: 0.75rem;
+            align-items: center; /* center links horizontally */
+            padding: 1.25rem 1.5rem 1.75rem;
+            border-radius: 16px;
+            box-shadow: 0 18px 50px rgba(6,8,23,0.28), 0 8px 30px rgba(124,58,237,0.06);
             opacity: 0;
             pointer-events: none;
             transition: opacity 220ms cubic-bezier(.2,.9,.2,1), transform 220ms cubic-bezier(.2,.9,.2,1);
-            border: 1px solid rgba(124,58,237,0.06);
+            border: 1px solid rgba(124,58,237,0.07);
             z-index: 2147483647 !important;
             overflow: visible;
-            backdrop-filter: blur(8px) saturate(120%);
+            backdrop-filter: blur(10px) saturate(120%);
         }
 
     /* Backdrop behind the mobile nav overlay to ensure visibility and capture clicks */
@@ -214,41 +226,41 @@ body {
     .nav-close:hover { background: rgba(0,0,0,0.04); }
   
     .nav-menu .nav-link {
-        color: #0b1220 !important; /* darker for contrast */
-        background: #ffffff !important;
-        border: 1px solid rgba(124,58,237,0.12) !important;
-        padding: 1.4rem 1.8rem !important;
+        color: #071130 !important; /* darker for contrast */
+        background: linear-gradient(180deg, #ffffff, #fbfbff) !important;
+        border: 1px solid rgba(124,58,237,0.06) !important;
+        padding: 0.9rem 1.25rem !important;
         font-weight: 700 !important;
-        font-size: 1.25rem !important;
+        font-size: 1rem !important;
         text-align: center !important;
         border-radius: 12px !important;
-        transition: transform 0.18s ease !important;
-        box-shadow: 0 10px 30px rgba(17,24,39,0.08) !important;
-        margin-bottom: 0.75rem !important;
+        transition: transform 160ms cubic-bezier(.2,.9,.2,1), box-shadow 160ms ease !important;
+        box-shadow: 0 10px 30px rgba(11,17,32,0.06) !important;
+        margin: 0.5rem 0 !important;
         display: block !important;
-        width: 88% !important;
-        max-width: 520px !important;
+        width: 76% !important;
+        max-width: 360px !important;
         box-sizing: border-box !important;
         -webkit-font-smoothing: antialiased !important;
     }
   
-  .nav-menu .nav-link:hover,
-  .nav-menu .nav-link:active,
-  .nav-menu .nav-link:focus {
-    background: rgba(245, 158, 11, 0.2) !important;
-    color: #1e293b !important;
-    transform: none !important;
-    box-shadow: none !important;
-    border-color: rgba(245, 158, 11, 0.3) !important;
-  }
+    .nav-menu .nav-link:hover,
+    .nav-menu .nav-link:active,
+    .nav-menu .nav-link:focus {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 18px 40px rgba(11,17,32,0.08) !important;
+        border-color: rgba(124,58,237,0.12) !important;
+        background: linear-gradient(90deg, #ffffff 0%, #f7f7ff 100%) !important;
+    }
   
   .hamburger { 
     display: flex; 
   }
 }
-.hamburger.active .bar:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+.hamburger.active { transform: scale(0.98); background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(6,182,212,0.06)); }
+.hamburger.active .bar:nth-child(1){ transform: translateY(6px) rotate(45deg); background: #071130; }
 .hamburger.active .bar:nth-child(2){ opacity:0; }
-.hamburger.active .bar:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+.hamburger.active .bar:nth-child(3){ transform: translateY(-6px) rotate(-45deg); background: #071130; }
 
 /* Hero Section */
 .hero {
