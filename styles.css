@@ -145,30 +145,32 @@ body {
 
 @media (max-width: 900px) {
     /* Mobile: make nav a fixed overlay so it's never hidden under other elements */
-    .nav-menu { 
-        position: fixed;
-        /* place the overlay below the navbar so the header isn't covered */
-        top: 70px;
-        left: 0;
-        right: 0;
-        background: #ffffff;
-        backdrop-filter: none;
-        flex-direction: column;
-        gap: 2rem;
-        padding: 1.5rem 2rem 2.5rem; /* reduced top padding since we're below navbar */
-        border-radius: 0 0 20px 20px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        min-width: 100%;
-        /* subtract navbar height so overlay fills remaining viewport */
-        min-height: calc(100vh - 70px);
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(-6%);
-        transition: all 0.28s cubic-bezier(.2,.9,.2,1);
-        border: none;
-        z-index: 16000; /* above modals and overlays */
-        overflow-y: auto;
-    }
+        .nav-menu { 
+            position: fixed;
+            /* place the overlay below the navbar so the header isn't covered */
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: none;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 1.5rem 2rem 2.5rem; /* reduced top padding since we're below navbar */
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+            min-width: 100%;
+            /* subtract navbar height so overlay fills remaining viewport */
+            min-height: calc(100vh - 70px);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-6%);
+            transition: all 0.18s cubic-bezier(.2,.9,.2,1);
+            border: none;
+            z-index: 99999 !important; /* very high to ensure visibility */
+            overflow-y: auto;
+            display: flex !important;
+            align-items: flex-start;
+        }
 
     /* Backdrop behind the mobile nav overlay to ensure visibility and capture clicks */
     .nav-backdrop {
@@ -192,6 +194,7 @@ body {
         opacity: 1;
         pointer-events: auto;
         transform: translateY(0);
+        display: flex !important;
     }
   
   .nav-menu .nav-link {
