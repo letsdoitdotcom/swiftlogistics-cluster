@@ -238,8 +238,8 @@ body {
         box-shadow: 0 10px 30px rgba(11,17,32,0.06) !important;
         margin: 0.5rem 0 !important;
         display: block !important;
-        width: 76% !important;
-        max-width: 360px !important;
+        width: 100% !important;
+        max-width: none !important;
         box-sizing: border-box !important;
         -webkit-font-smoothing: antialiased !important;
     }

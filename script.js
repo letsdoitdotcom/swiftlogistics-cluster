@@ -15,18 +15,27 @@ const SCROLL_CLOSE_THRESHOLD = 25; // px
 // Ensure the mobile nav and backdrop are top-level elements so fixed positioning
 // and z-index behave consistently across browsers (some mobile browsers create
 // unexpected stacking contexts when elements stay nested inside transformed parents).
-document.addEventListener('DOMContentLoaded', () => {
+function ensureMenuPlacement(){
     try{
         const navMenuEl = document.querySelector('.nav-menu');
         const navBackdropEl = document.querySelector('.nav-backdrop');
-        if(navMenuEl && navMenuEl.parentElement !== document.body){
-            document.body.appendChild(navMenuEl);
-        }
-        if(navBackdropEl && navBackdropEl.parentElement !== document.body){
-            document.body.appendChild(navBackdropEl);
+        const navContainer = document.querySelector('.nav-container');
+        if(!navMenuEl || !navContainer) return;
+
+        // For small screens, keep the panel at document.body so fixed positioning isn't clipped.
+        if(window.innerWidth <= 900){
+            if(navMenuEl.parentElement !== document.body) document.body.appendChild(navMenuEl);
+            if(navBackdropEl && navBackdropEl.parentElement !== document.body) document.body.appendChild(navBackdropEl);
+        } else {
+            // On larger screens, keep nav links inside the header container so they appear inline.
+            if(navMenuEl.parentElement !== navContainer) navContainer.appendChild(navMenuEl);
+            if(navBackdropEl && navBackdropEl.parentElement !== navContainer) navContainer.appendChild(navBackdropEl);
         }
     }catch(e){ /* ignore */ }
-});
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{ ensureMenuPlacement(); });
+window.addEventListener('resize', ()=>{ ensureMenuPlacement(); });
 
 function openMenu(){
     hamburger.classList.add('active');
