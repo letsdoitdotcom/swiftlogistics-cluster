@@ -1850,7 +1850,8 @@ body {
   }
 
   .hero-container { 
-    grid-template-columns: 1fr; 
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem; 
     text-align: center; 
     padding: 0 1rem;
@@ -1876,14 +1877,12 @@ body {
   }
   
   .tracking-form {
-    margin: 1rem;
+    margin: 1rem auto;
     padding: 2rem 1.5rem;
     max-width: calc(100% - 2rem);
     width: calc(100% - 2rem);
     box-sizing: border-box;
-    left: 50%;
-    transform: translateX(-50%);
-    position: relative;
+    display: block;
   }
   
   .tracking-form h3 {
@@ -2182,9 +2181,7 @@ body {
     max-width: calc(100% - 2rem);
     width: calc(100% - 2rem);
     box-sizing: border-box;
-    left: 50%;
-    transform: translateX(-50%);
-    position: relative;
+    display: block;
   }
   
   .tracking-form h3 {
