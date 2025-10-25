@@ -124,16 +124,25 @@ contactForm.addEventListener('submit', (e) => {
 });
 
 // Navbar scroll effect
-window.addEventListener('scroll', () => {
+function updateNavbarBackground() {
     const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
     if (window.scrollY > 100) {
         navbar.style.background = 'rgba(255, 255, 255, 0.98)';
         navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+        navbar.dataset.scrolled = 'true';
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        // keep navbar dark when at top
+        navbar.style.background = 'rgba(30, 27, 75, 0.95)';
         navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        navbar.dataset.scrolled = 'false';
     }
-});
+}
+
+window.addEventListener('scroll', updateNavbarBackground);
+
+// ensure correct initial state on load
+document.addEventListener('DOMContentLoaded', updateNavbarBackground);
 
 // Animate elements on scroll
 const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
