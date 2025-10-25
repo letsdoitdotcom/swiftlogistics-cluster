@@ -12,35 +12,41 @@ const navBackdrop = document.querySelector('.nav-backdrop');
 let lastScrollY = window.scrollY || window.pageYOffset || 0;
 const SCROLL_CLOSE_THRESHOLD = 25; // px
 
+function openMenu(){
+    hamburger.classList.add('active');
+    navMenu.classList.add('active');
+    if(navBackdrop) navBackdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    // accessibility
+    try{ hamburger.setAttribute('aria-expanded','true'); }catch(e){}
+    try{ navMenu.setAttribute('aria-hidden','false'); }catch(e){}
+}
+
+function closeMenu(){
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    if(navBackdrop) navBackdrop.classList.remove('active');
+    document.body.style.overflow = '';
+    // accessibility
+    try{ hamburger.setAttribute('aria-expanded','false'); }catch(e){}
+    try{ navMenu.setAttribute('aria-hidden','true'); }catch(e){}
+}
+
 hamburger.addEventListener('click', (e) => {
     e.stopPropagation();
     const willBeActive = !hamburger.classList.contains('active');
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-
-    // When menu opens, lock body scroll to avoid mobile address-bar/viewport shifts
-    if (willBeActive) {
-        document.body.style.overflow = 'hidden';
-        if(navBackdrop) navBackdrop.classList.add('active');
-    } else {
-        document.body.style.overflow = '';
-        if(navBackdrop) navBackdrop.classList.remove('active');
-    }
+    if(willBeActive) openMenu(); else closeMenu();
 });
 
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-    document.body.style.overflow = '';
+    // keep existing navigation behavior but ensure aria + backdrop are updated
+    closeMenu();
 }));
 
 // Close mobile menu when clicking outside (only if menu is open)
 document.addEventListener('click', (e) => {
     if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.style.overflow = '';
-        if(navBackdrop) navBackdrop.classList.remove('active');
+        closeMenu();
     }
 });
 
@@ -48,24 +54,14 @@ document.addEventListener('click', (e) => {
 window.addEventListener('scroll', () => {
     const currentY = window.scrollY || window.pageYOffset || 0;
     if (navMenu.classList.contains('active') && Math.abs(currentY - lastScrollY) > SCROLL_CLOSE_THRESHOLD) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.style.overflow = '';
-        if(navBackdrop) navBackdrop.classList.remove('active');
+        closeMenu();
     }
     lastScrollY = currentY;
 });
 
 // Clicking the backdrop should close the menu
 if(navBackdrop){
-    navBackdrop.addEventListener('click', ()=>{
-        if(navMenu.classList.contains('active')){
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            navBackdrop.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
+    navBackdrop.addEventListener('click', ()=>{ if(navMenu.classList.contains('active')) closeMenu(); });
 }
 
 // Smooth scrolling for navigation links

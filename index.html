@@ -19,24 +19,28 @@
         </div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigation (rebuilt for robust mobile behavior) -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="/" class="nav-logo">
                 <i class="fas fa-bolt"></i>
                 <span>SwiftLogistics</span>
             </a>
-            <ul class="nav-menu">
+
+            <!-- Hamburger button (accessible) -->
+            <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- Primary navigation -->
+            <ul id="primary-nav" class="nav-menu" aria-hidden="true">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
         </div>
     </nav>
     <div class="nav-backdrop" aria-hidden="true"></div>

@@ -144,44 +144,44 @@ body {
 }
 
 @media (max-width: 900px) {
-    /* Mobile: make nav a fixed overlay so it's never hidden under other elements */
+    /* Mobile: make nav a full-screen fixed overlay so it's never hidden under other elements */
         .nav-menu { 
             position: fixed;
-            /* place the overlay below the navbar so the header isn't covered */
-            top: 70px;
+            /* cover the full viewport to avoid clipping from browser UI differences */
+            top: 0;
             left: 0;
             right: 0;
-            height: calc(100vh - 70px);
+            height: 100vh;
             width: 100%;
-            background: rgba(255,255,255,0.96);
-            backdrop-filter: none;
+            background: #ffffff !important;
             display: flex !important;
             flex-direction: column;
             justify-content: center; /* center items vertically */
             align-items: center;    /* center items horizontally */
-            gap: 1.5rem;
-            padding: 2rem 1.5rem;
-            border-radius: 0 0 0 0; /* full width, no rounding */
+            gap: 1.25rem;
+            padding: 120px 1.5rem 2.5rem; /* leave space for the fixed navbar at the top */
             box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-            min-width: 100%;
             opacity: 0;
             pointer-events: none;
-            transform: translateY(-4%);
-            transition: opacity 0.18s ease, transform 0.18s ease;
+            transform: translateY(-3%);
+            transition: opacity 0.22s ease, transform 0.22s ease;
             border: none;
-            z-index: 99999 !important; /* very high to ensure visibility */
+            /* Force to topmost to avoid any stacking context surprises on mobile browsers */
+            z-index: 2147483647 !important;
             overflow-y: auto;
+            /* DEBUG: visible outline to help identify the menu box on problematic devices; remove once verified */
+            outline: 3px solid rgba(255,0,0,0.12);
         }
 
     /* Backdrop behind the mobile nav overlay to ensure visibility and capture clicks */
     .nav-backdrop {
         position: fixed;
-        top: 70px;
+        top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         background: rgba(0,0,0,0.45);
-        z-index: 15990; /* below nav-menu but above page content */
+        z-index: 2147483646; /* below nav-menu but above page content */
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.28s ease;
@@ -192,28 +192,30 @@ body {
     }
 
     .nav-menu.active {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(0);
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+        visibility: visible !important;
         display: flex !important;
     }
   
     .nav-menu .nav-link {
-        color: #0f172a !important; /* darker for contrast */
-        background: #fff !important;
+        color: #0b1220 !important; /* darker for contrast */
+        background: #ffffff !important;
         border: 1px solid rgba(124,58,237,0.12) !important;
         padding: 1.4rem 1.8rem !important;
         font-weight: 700 !important;
-        font-size: 1.15rem !important;
+        font-size: 1.25rem !important;
         text-align: center !important;
         border-radius: 12px !important;
         transition: transform 0.18s ease !important;
-        box-shadow: 0 10px 30px rgba(17,24,39,0.06) !important;
+        box-shadow: 0 10px 30px rgba(17,24,39,0.08) !important;
         margin-bottom: 0.75rem !important;
         display: block !important;
-        width: 85% !important;
-        max-width: 420px !important;
+        width: 88% !important;
+        max-width: 520px !important;
         box-sizing: border-box !important;
+        -webkit-font-smoothing: antialiased !important;
     }
   
   .nav-menu .nav-link:hover,
