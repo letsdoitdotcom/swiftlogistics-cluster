@@ -40,7 +40,7 @@ body {
     width: 100%;
     background: rgba(30, 27, 75, 0.95);
     backdrop-filter: blur(15px);
-    z-index: 1000;
+    z-index: 15000;
     padding: 1rem 0;
     box-shadow: 0 4px 30px rgba(124, 58, 237, 0.3);
     border-bottom: 1px solid rgba(124, 58, 237, 0.2);
@@ -113,6 +113,8 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    z-index: 15001;
+    position: relative;
 }
 
 .bar {
@@ -159,7 +161,7 @@ body {
     transform: translateY(-10px); 
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    z-index: 15000;
   }
   
   .nav-menu.active { 
