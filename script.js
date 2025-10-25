@@ -160,6 +160,16 @@ contactForm.addEventListener('submit', (e) => {
 function updateNavbarBackground() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
+    // If the mobile nav is open, prefer the dark header so the menu remains readable
+    const mobileNav = document.querySelector('.nav-menu');
+    const isNavOpen = mobileNav && mobileNav.classList.contains('active');
+    if (isNavOpen) {
+        navbar.style.background = 'rgba(30, 27, 75, 0.95)';
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        navbar.dataset.scrolled = 'false';
+        return;
+    }
+
     if (window.scrollY > 100) {
         navbar.style.background = 'rgba(255, 255, 255, 0.98)';
         navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';

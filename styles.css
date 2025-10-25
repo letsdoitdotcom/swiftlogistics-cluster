@@ -198,6 +198,23 @@ body {
         visibility: visible !important;
         display: flex !important;
     }
+
+    /* Small debug badge so we can confirm the nav overlay is rendering on problematic devices */
+    .nav-menu::before { content: none; }
+    .nav-menu.active::before {
+        content: 'MENU';
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #071130;
+        background: rgba(255,255,255,0.98);
+        padding: 6px 10px;
+        border-radius: 8px;
+        z-index: 2147483650;
+        font-weight: 700;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
   
     .nav-menu .nav-link {
         color: #0b1220 !important; /* darker for contrast */
