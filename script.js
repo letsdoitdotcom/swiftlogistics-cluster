@@ -67,18 +67,31 @@ document.addEventListener('click', (e) => {
 });
 
 // Close mobile menu on meaningful scroll (debounce by threshold)
+// Do not auto-close the menu on scroll. The user requested that the menu remain
+// open until they click the hamburger again or click outside/backdrop.
 window.addEventListener('scroll', () => {
-    const currentY = window.scrollY || window.pageYOffset || 0;
-    if (navMenu.classList.contains('active') && Math.abs(currentY - lastScrollY) > SCROLL_CLOSE_THRESHOLD) {
-        closeMenu();
-    }
-    lastScrollY = currentY;
+    lastScrollY = window.scrollY || window.pageYOffset || 0;
 });
 
 // Clicking the backdrop should close the menu
 if(navBackdrop){
     navBackdrop.addEventListener('click', ()=>{ if(navMenu.classList.contains('active')) closeMenu(); });
 }
+
+// Inject a close button inside the nav panel for convenience (no HTML edits needed).
+document.addEventListener('DOMContentLoaded', ()=>{
+    try{
+        if(navMenu && !navMenu.querySelector('.nav-close')){
+            const btn = document.createElement('button');
+            btn.className = 'nav-close';
+            btn.setAttribute('aria-label','Close menu');
+            btn.innerHTML = '&#x2715;';
+            btn.addEventListener('click', closeMenu);
+            // insert as first child so it appears in top-right of panel
+            navMenu.insertBefore(btn, navMenu.firstChild);
+        }
+    }catch(e){/* ignore */}
+});
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
