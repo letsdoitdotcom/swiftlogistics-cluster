@@ -1857,7 +1857,9 @@ body {
     max-width: 100%;
     width: 100%;
     justify-content: center;
+    align-items: center;
     box-sizing: border-box;
+    overflow-x: hidden;
   }
   
   .hero-title { 
@@ -1874,11 +1876,14 @@ body {
   }
   
   .tracking-form {
-    margin: 1rem auto;
-    padding: 2rem 1rem;
+    margin: 1rem;
+    padding: 2rem 1.5rem;
     max-width: calc(100% - 2rem);
-    width: 100%;
+    width: calc(100% - 2rem);
     box-sizing: border-box;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
   }
   
   .tracking-form h3 {
@@ -2087,7 +2092,13 @@ body {
   .hero-subtitle { font-size:1rem; }
   .about-graphic, .hero-graphic { width:180px; height:180px; font-size:4rem; }
   .tracking-header-text h1 { font-size:2rem; }
-  .tracking-form { padding:2rem 1.5rem; margin: 1rem; }
+  .tracking-form { 
+    padding: 2rem 1.5rem; 
+    margin: 1rem auto; 
+    max-width: calc(100% - 2rem);
+    width: calc(100% - 2rem);
+    box-sizing: border-box;
+  }
   .tracking-form h3 { font-size:1.5rem; }
   
   .about h2,
@@ -2167,6 +2178,13 @@ body {
   
   .tracking-form {
     padding: 1.5rem 1rem;
+    margin: 1rem auto;
+    max-width: calc(100% - 2rem);
+    width: calc(100% - 2rem);
+    box-sizing: border-box;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
   }
   
   .tracking-form h3 {
