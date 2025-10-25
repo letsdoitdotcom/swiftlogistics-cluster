@@ -144,31 +144,35 @@ body {
 }
 
 @media (max-width: 900px) {
-  .nav-menu { 
-    position: absolute; 
-    top: 70px; 
-    right: 20px; 
-    background: #ffffff; 
-    backdrop-filter: none;
-    flex-direction: column; 
-    gap: 2rem; 
-    padding: 2.5rem 2rem; 
-    border-radius: 20px; 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
-    min-width: 240px; 
-    opacity: 0; 
-    pointer-events: none; 
-    transform: translateY(-10px); 
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    z-index: 15000;
-  }
-  
-  .nav-menu.active { 
-    opacity: 1; 
-    pointer-events: auto; 
-    transform: translateY(0); 
-  }
+    /* Mobile: make nav a fixed overlay so it's never hidden under other elements */
+    .nav-menu { 
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        backdrop-filter: none;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 4.5rem 2rem 2.5rem; /* top padding keeps space for the navbar */
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        min-width: 100%;
+        min-height: calc(100vh - 0px);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-6%);
+        transition: all 0.28s cubic-bezier(.2,.9,.2,1);
+        border: none;
+        z-index: 16000; /* above modals and overlays */
+        overflow-y: auto;
+    }
+
+    .nav-menu.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
   
   .nav-menu .nav-link {
     color: #1e293b !important;
