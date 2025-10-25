@@ -151,25 +151,26 @@ body {
             top: 70px;
             left: 0;
             right: 0;
-            background: rgba(255,255,255,0.98);
+            height: calc(100vh - 70px);
+            width: 100%;
+            background: rgba(255,255,255,0.96);
             backdrop-filter: none;
+            display: flex !important;
             flex-direction: column;
-            gap: 2rem;
-            padding: 1.5rem 2rem 2.5rem; /* reduced top padding since we're below navbar */
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+            justify-content: center; /* center items vertically */
+            align-items: center;    /* center items horizontally */
+            gap: 1.5rem;
+            padding: 2rem 1.5rem;
+            border-radius: 0 0 0 0; /* full width, no rounding */
+            box-shadow: 0 20px 60px rgba(0,0,0,0.45);
             min-width: 100%;
-            /* subtract navbar height so overlay fills remaining viewport */
-            min-height: calc(100vh - 70px);
             opacity: 0;
             pointer-events: none;
-            transform: translateY(-6%);
-            transition: all 0.18s cubic-bezier(.2,.9,.2,1);
+            transform: translateY(-4%);
+            transition: opacity 0.18s ease, transform 0.18s ease;
             border: none;
             z-index: 99999 !important; /* very high to ensure visibility */
             overflow-y: auto;
-            display: flex !important;
-            align-items: flex-start;
         }
 
     /* Backdrop behind the mobile nav overlay to ensure visibility and capture clicks */
@@ -197,23 +198,23 @@ body {
         display: flex !important;
     }
   
-  .nav-menu .nav-link {
-    color: #1e293b !important;
-    background: rgba(245, 158, 11, 0.1) !important;
-    border: 1px solid rgba(245, 158, 11, 0.2) !important;
-    padding: 1.2rem 1.5rem !important;
-    font-weight: 600 !important;
-    text-align: center !important;
-    border-radius: 12px !important;
-    transition: all 0.3s ease !important;
-    backdrop-filter: none !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    margin-bottom: 0.5rem !important;
-    display: block !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
+    .nav-menu .nav-link {
+        color: #0f172a !important; /* darker for contrast */
+        background: #fff !important;
+        border: 1px solid rgba(124,58,237,0.12) !important;
+        padding: 1.4rem 1.8rem !important;
+        font-weight: 700 !important;
+        font-size: 1.15rem !important;
+        text-align: center !important;
+        border-radius: 12px !important;
+        transition: transform 0.18s ease !important;
+        box-shadow: 0 10px 30px rgba(17,24,39,0.06) !important;
+        margin-bottom: 0.75rem !important;
+        display: block !important;
+        width: 85% !important;
+        max-width: 420px !important;
+        box-sizing: border-box !important;
+    }
   
   .nav-menu .nav-link:hover,
   .nav-menu .nav-link:active,
