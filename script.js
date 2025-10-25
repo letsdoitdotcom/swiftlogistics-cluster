@@ -12,6 +12,22 @@ const navBackdrop = document.querySelector('.nav-backdrop');
 let lastScrollY = window.scrollY || window.pageYOffset || 0;
 const SCROLL_CLOSE_THRESHOLD = 25; // px
 
+// Ensure the mobile nav and backdrop are top-level elements so fixed positioning
+// and z-index behave consistently across browsers (some mobile browsers create
+// unexpected stacking contexts when elements stay nested inside transformed parents).
+document.addEventListener('DOMContentLoaded', () => {
+    try{
+        const navMenuEl = document.querySelector('.nav-menu');
+        const navBackdropEl = document.querySelector('.nav-backdrop');
+        if(navMenuEl && navMenuEl.parentElement !== document.body){
+            document.body.appendChild(navMenuEl);
+        }
+        if(navBackdropEl && navBackdropEl.parentElement !== document.body){
+            document.body.appendChild(navBackdropEl);
+        }
+    }catch(e){ /* ignore */ }
+});
+
 function openMenu(){
     hamburger.classList.add('active');
     navMenu.classList.add('active');
