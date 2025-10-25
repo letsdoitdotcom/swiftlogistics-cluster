@@ -170,6 +170,24 @@ body {
         overflow-y: auto;
     }
 
+    /* Backdrop behind the mobile nav overlay to ensure visibility and capture clicks */
+    .nav-backdrop {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 15990; /* below nav-menu but above page content */
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.28s ease;
+    }
+    .nav-backdrop.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
     .nav-menu.active {
         opacity: 1;
         pointer-events: auto;

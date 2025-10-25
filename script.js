@@ -4,6 +4,7 @@ const navMenu = document.querySelector('.nav-menu');
 const trackingForm = document.getElementById('trackingForm');
 const contactForm = document.getElementById('contactForm');
 const trackingLoader = document.getElementById('trackingLoader');
+const navBackdrop = document.querySelector('.nav-backdrop');
 
 // Mobile Navigation Toggle (improved)
 // Prevent accidental immediate close on small scrolls (address-bar collapse) and
@@ -20,8 +21,10 @@ hamburger.addEventListener('click', (e) => {
     // When menu opens, lock body scroll to avoid mobile address-bar/viewport shifts
     if (willBeActive) {
         document.body.style.overflow = 'hidden';
+        if(navBackdrop) navBackdrop.classList.add('active');
     } else {
         document.body.style.overflow = '';
+        if(navBackdrop) navBackdrop.classList.remove('active');
     }
 });
 
@@ -37,6 +40,7 @@ document.addEventListener('click', (e) => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
         document.body.style.overflow = '';
+        if(navBackdrop) navBackdrop.classList.remove('active');
     }
 });
 
@@ -47,9 +51,22 @@ window.addEventListener('scroll', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
         document.body.style.overflow = '';
+        if(navBackdrop) navBackdrop.classList.remove('active');
     }
     lastScrollY = currentY;
 });
+
+// Clicking the backdrop should close the menu
+if(navBackdrop){
+    navBackdrop.addEventListener('click', ()=>{
+        if(navMenu.classList.contains('active')){
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            navBackdrop.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
