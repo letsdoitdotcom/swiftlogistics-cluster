@@ -154,6 +154,46 @@ body {
   }
 }
 
+/* Desktop layout: ensure the nav menu is inline on the right and hide modal-only controls */
+@media (min-width: 901px) {
+    .nav-menu {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        height: auto !important;
+        width: auto !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 1.5rem !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        z-index: auto !important;
+        margin-left: auto; /* push the nav to the right */
+        align-items: center;
+    }
+
+    .nav-menu .nav-link {
+        width: auto !important;
+        max-width: none !important;
+        padding: 0.5rem 0.9rem !important;
+        background: rgba(255,255,255,0.9) !important;
+        border-radius: 10px !important;
+        box-shadow: 0 6px 18px rgba(11,15,30,0.08) !important;
+        font-size: 0.95rem !important;
+    }
+
+    /* Hide the injected in-panel close button on desktop */
+    .nav-close { display: none !important; }
+
+}
+
 @media (max-width: 900px) {
     /* Mobile: make nav a full-screen fixed overlay so it's never hidden under other elements */
         .nav-menu { 
