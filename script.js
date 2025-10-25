@@ -5,30 +5,50 @@ const trackingForm = document.getElementById('trackingForm');
 const contactForm = document.getElementById('contactForm');
 const trackingLoader = document.getElementById('trackingLoader');
 
-// Mobile Navigation Toggle
+// Mobile Navigation Toggle (improved)
+// Prevent accidental immediate close on small scrolls (address-bar collapse) and
+// keep menu open until an intentional outside click or meaningful scroll occurs.
+let lastScrollY = window.scrollY || window.pageYOffset || 0;
+const SCROLL_CLOSE_THRESHOLD = 25; // px
+
 hamburger.addEventListener('click', (e) => {
     e.stopPropagation();
+    const willBeActive = !hamburger.classList.contains('active');
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
+
+    // When menu opens, lock body scroll to avoid mobile address-bar/viewport shifts
+    if (willBeActive) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
 });
 
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
+    document.body.style.overflow = '';
 }));
 
-// Close mobile menu when clicking outside
+// Close mobile menu when clicking outside (only if menu is open)
 document.addEventListener('click', (e) => {
-    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+    if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
+        document.body.style.overflow = '';
     }
 });
 
-// Close mobile menu when scrolling
+// Close mobile menu on meaningful scroll (debounce by threshold)
 window.addEventListener('scroll', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
+    const currentY = window.scrollY || window.pageYOffset || 0;
+    if (navMenu.classList.contains('active') && Math.abs(currentY - lastScrollY) > SCROLL_CLOSE_THRESHOLD) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    lastScrollY = currentY;
 });
 
 // Smooth scrolling for navigation links
